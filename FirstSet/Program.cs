@@ -19,13 +19,13 @@ namespace FirstSet
             ///the specified functionality.
             ///Note: to convert a string s to an int value, use the int.Parse(s) method.
             ///
-            Console.WriteLine("Input the first number:");
-            var inputA = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Input the first number:");
+            //var inputA = int.Parse(Console.ReadLine());
 
-            Console.WriteLine("Input the second number:");
-            var inputB = int.Parse(Console.ReadLine());
+            //Console.WriteLine("Input the second number:");
+            //var inputB = int.Parse(Console.ReadLine());
 
-            GetIntegerRange(inputA, inputB);
+            //DisplayNumbersThatHave2TwosInTernary(inputA, inputB);
 
             Console.WriteLine("[--------------------------]");
             Console.WriteLine();
@@ -42,11 +42,11 @@ namespace FirstSet
             ///mistakes when entering.
             ///Note 1: the check "digit" can be equal to 10.In this case, the symbol X is used to denote it.
             ///
-            Console.WriteLine("Input the first nine digits of ISBN number");
-            var nineDigitNumber = Console.ReadLine();
-            //043942089 - this is as an example to get Check Digit = 10 so it will convert to X
-            //019852663 6
-            Console.WriteLine(ReturnISBN(nineDigitNumber));
+            //Console.WriteLine("Input the first nine digits of ISBN number");
+            //var nineDigitNumber = Console.ReadLine();
+            ////043942089 - this is as an example to get Check Digit = 10 so it will convert to X
+            ////019852663 6
+            //Console.WriteLine(ReturnISBN(nineDigitNumber));
 
             Console.WriteLine("[--------------------------]");
             Console.WriteLine();
@@ -63,7 +63,7 @@ namespace FirstSet
             ///Note 1: the correctness of the length of the array can be left unchecked.
             ///Note 2: The smallest and largest items are to be included in the amount.
             ///
-            PrintSumOfAnArray();
+            PrintSumOfNumbers();
             Console.WriteLine("[--------------------------]");
             Console.WriteLine();
 
@@ -71,15 +71,20 @@ namespace FirstSet
             Console.ReadKey();
         }
         #region Task 3
-        private static void PrintSumOfAnArray()
+        private static void PrintSumOfNumbers()
         {
-            var intArray = ReturnNumberArray();
-
+            var intArray = ReturnNumbers();
+            //examples
+            //#1
+            //var intArray = new List<int> { 1, 1, 2, 7, 7, 5, 6 }; 
+            //output: 1, 1, 2, 7, 7 (smallest left-most is 1 at[0] and largest right-most is 7 at[4]
+            //#2
+            //var intArray = new List<int> { 6, 5, 7, 7, 2, 1, 1 }; 
+            //output: 7, 2, 1 (this condition is not written in an assignment)
             var min = intArray.Min();
             var minIndex = intArray.FindIndex(i => i == min);
             var max = intArray.Max();
-            var maxIndex = intArray.FindIndex(i => i == max);
-            var newArray = new List<int>();
+            var maxIndex = intArray.FindLastIndex(i => i == max);
             var sum = 0;
 
             Console.WriteLine("The new list with min ... max values: ");
@@ -89,20 +94,19 @@ namespace FirstSet
                 if (i <= minIndex && i >= maxIndex)
                 {
                     Console.Write($"{intArray[i]}, ");
-                    newArray.Add(intArray[i]);
+                    sum += intArray[i];
                 }
                 else if (i >= minIndex && i <= maxIndex)
                 {
                     Console.Write($"{intArray[i]}, ");
-                    newArray.Add(intArray[i]);
+                    sum += intArray[i];
                 }
-                sum = newArray.Sum();
             }
             Console.WriteLine();
             Console.WriteLine($"The sum between min and max is: {sum}");
             Console.WriteLine();
         }
-        private static List<int> ReturnNumberArray()
+        private static List<int> ReturnNumbers()
         {
             Console.WriteLine("Input the size of the list: ");
             var intArray = new List<int>();
@@ -125,7 +129,7 @@ namespace FirstSet
         }
         #endregion
         #region Task 2
-        private static int ReturnSum(string isbn)
+        private static int ReturnSumOfNineDigits(string isbn)
         {
             int sumOfNineDigits = 0;
             int inputLength = 9;
@@ -133,7 +137,7 @@ namespace FirstSet
             //bellow loop is: ((10*d1)+(9*d2)+(8*d3)+(7*d4)+(6*d5)+(5*d6)+(4*d7)+(3*d8)+(2*d9))
             for (int i = 0; i < inputLength; i++)
             {
-                sumOfNineDigits += int.Parse(isbn[i].ToString()) * (multiplier - i);
+                sumOfNineDigits += (isbn[i] - '0') * (multiplier - i);
             }
             //043942089 X
             //019852663 6            
@@ -141,7 +145,7 @@ namespace FirstSet
         }
         private static string ReturnISBN(string isbn)
         {
-            int sumOfNineDigits = ReturnSum(isbn);
+            int sumOfNineDigits = ReturnSumOfNineDigits(isbn);
             int remainder = sumOfNineDigits % 11;
 
             string checkDigit = (11 - remainder).ToString();
@@ -154,11 +158,11 @@ namespace FirstSet
             var sb = new StringBuilder();
             sb.Append(isbn);
             sb.Append(checkDigit);
-            return sb.ToString();
+            return $"{isbn}-{checkDigit}";
         }
         #endregion
         #region Task 1
-        private static List<int> GetIntegerRange(int inputA, int inputB)
+        private static void DisplayNumbersThatHave2TwosInTernary(int inputA, int inputB)
         {
             var inputRange = new List<int>();
             //using LINQ to add written inputs range into a list
@@ -174,7 +178,6 @@ namespace FirstSet
                 }
             }
             Console.WriteLine();
-            return inputRange;
         }
         private static StringBuilder ReturnTernaryNumber(int numb)
         {
