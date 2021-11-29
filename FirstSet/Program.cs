@@ -19,13 +19,13 @@ namespace FirstSet
             ///the specified functionality.
             ///Note: to convert a string s to an int value, use the int.Parse(s) method.
             ///
-            //Console.WriteLine("Input the first number:");
-            //var inputA = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input the first number:");
+            var inputA = int.Parse(Console.ReadLine());
 
-            //Console.WriteLine("Input the second number:");
-            //var inputB = int.Parse(Console.ReadLine());
+            Console.WriteLine("Input the second number:");
+            var inputB = int.Parse(Console.ReadLine());
 
-            //DisplayNumbersThatHave2TwosInTernary(inputA, inputB);
+            DisplayNumbersThatHave2TwosInTernary(inputA, inputB);
 
             Console.WriteLine("[--------------------------]");
             Console.WriteLine();
@@ -42,11 +42,11 @@ namespace FirstSet
             ///mistakes when entering.
             ///Note 1: the check "digit" can be equal to 10.In this case, the symbol X is used to denote it.
             ///
-            //Console.WriteLine("Input the first nine digits of ISBN number");
-            //var nineDigitNumber = Console.ReadLine();
-            ////043942089 - this is as an example to get Check Digit = 10 so it will convert to X
-            ////019852663 6
-            //Console.WriteLine(ReturnISBN(nineDigitNumber));
+            Console.WriteLine("Input the first nine digits of ISBN number");
+            var nineDigitNumber = Console.ReadLine();
+            //043942089 - this is as an example to get Check Digit = 10 so it will convert to X
+            //019852663 6
+            Console.WriteLine(ReturnISBN(nineDigitNumber));
 
             Console.WriteLine("[--------------------------]");
             Console.WriteLine();
