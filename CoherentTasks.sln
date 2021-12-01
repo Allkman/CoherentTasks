@@ -7,9 +7,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1.NumberListWith2TwosIn
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork1", "HomeWork1", "{643AA6FC-3CD9-49FB-BD5A-8441CAF47699}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task2.ISBN.Number", "Task2\Task2.ISBN.Number.csproj", "{D6C3BF54-CC89-4215-B35F-23FCF33BEA40}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task2.ISBN.Number", "Task2.ISBN.Number\Task2.ISBN.Number.csproj", "{D6C3BF54-CC89-4215-B35F-23FCF33BEA40}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.SumOfListElements", "Task3\Task3.SumOfListElements.csproj", "{D43CF93F-5520-43CA-855C-B8CA082BDA14}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.SumOfListElements", "Task3.SumOfListElements\Task3.SumOfListElements.csproj", "{D43CF93F-5520-43CA-855C-B8CA082BDA14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
