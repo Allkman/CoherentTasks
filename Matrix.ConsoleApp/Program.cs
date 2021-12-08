@@ -6,12 +6,11 @@ namespace Matrix.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var matrixArray = new int[] { 4, 5, 6, 1, 5 };
-            var matrix = new Matrix(matrixArray);
-            for (int i = 0; i < matrix.; i++)
-            {
-                Console.WriteLine();
-            }
+            var matrixArray1 = new int[] { 4, 3, 6, 1, 5 };
+            var matrixArray2 = new int[] { 8, 2, 7 };
+            var matrix1 = new Matrix(matrixArray1);
+            Console.WriteLine();
+            var matrix2 = new Matrix(matrixArray2);
         }
     }
 }

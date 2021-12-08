@@ -31,37 +31,45 @@ namespace Matrix.ConsoleApp
         private int[] _diagonalMatrixArray;
         //2.
         public int Size => _size;
-        private readonly int i;
-        private readonly int j;
         private readonly int _size;
+       
+        //4.
+        private int i;
+        private int j;
+        private int _indexer;
+        public int Indexer 
+        {
+            get
+            {
+                return (i != j && (i < 0 && j < 0) && (i >= _size && j >= _size)) ? _indexer = 0 : _indexer;
+            }
 
-        /// <summary>
-        /// example of 3x3 diagonal matrix
-        /// [(i==j), (i!=j), (i!=j)] (0,0)
-        /// [(i!=j), (i==j), (i!=j)] (1,1)
-        /// [(i!=j), (i!=j), (i==j)] (2,2)
-        /// </summary>
+            set => _indexer = value; 
+        }
+        //3.
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
+        //https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/
         //passing a a single-dimentional array of params as in ms.docs
         public Matrix(params int[] diagonalMatrixArray)
         {
             _diagonalMatrixArray = diagonalMatrixArray;
-            //3.validating if params element is null
+            //validating if params element is null
             //https://stackoverflow.com/questions/6584131/c-sharp-is-it-possible-to-have-null-params @Joshua Rodgers answer
-            if (diagonalMatrixArray == null)
-            {
-                _size = 0; // if any element of array is null I set array size to 0
-            }
-            else
-            {
-             //_size = //some length
-            }
+
+            /// <summary>
+            /// example of 3x3 diagonal matrix
+            /// [(i==j), (i!=j), (i!=j)] (X, 0, 0)
+            /// [(i!=j), (i==j), (i!=j)] (0, X, 0)
+            /// [(i!=j), (i!=j), (i==j)] (0, 0, X)
+            /// </summary>
+            //a loop for creating a matrix:
+
         }
-
-
+        //5.
         private int Track()
         {
+
             int sum = 0;
             //implement logic
             return sum;
