@@ -8,9 +8,28 @@ namespace Matrix.ConsoleApp
         {
             var matrixArray1 = new int[] { 4, 3, 6, 1, 5 };
             var matrixArray2 = new int[] { 8, 2, 7 };
+
+            Console.WriteLine("[------------------]");
+            Console.WriteLine("The diagonal vector of the matrix 1");
+            foreach (var item in matrixArray1)
+            {
+                Console.Write($"{item}, ");
+            }
+            Console.WriteLine();
+            Console.WriteLine("The diagonal vector of the matrix 2");
+            foreach (var item in matrixArray2)
+            {
+                Console.Write($"{item}, ");
+            }
+            Console.WriteLine();
+            Console.WriteLine("[------------------]");
+
+            Console.WriteLine("Matrix 1:");
             var matrix1 = new Matrix(matrixArray1);
             Console.WriteLine();
+            Console.WriteLine("Matrix 2:");
             var matrix2 = new Matrix(matrixArray2);
+            
         }
-    }
+    }    
 }

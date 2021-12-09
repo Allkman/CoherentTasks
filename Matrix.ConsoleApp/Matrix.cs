@@ -34,18 +34,8 @@ namespace Matrix.ConsoleApp
         private readonly int _size;
        
         //4.
-        private int i;
-        private int j;
-        private int _indexer;
-        public int Indexer 
-        {
-            get
-            {
-                return (i != j && (i < 0 && j < 0) && (i >= _size && j >= _size)) ? _indexer = 0 : _indexer;
-            }
-
-            set => _indexer = value; 
-        }
+        private int row;
+        private int column;
         //3.
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
@@ -54,25 +44,46 @@ namespace Matrix.ConsoleApp
         public Matrix(params int[] diagonalMatrixArray)
         {
             _diagonalMatrixArray = diagonalMatrixArray;
+
+            int[,] matrix = new int[row, column];
+                _size = diagonalMatrixArray.Length;
             //validating if params element is null
             //https://stackoverflow.com/questions/6584131/c-sharp-is-it-possible-to-have-null-params @Joshua Rodgers answer
+            if (diagonalMatrixArray == null)
+            {
+                _size = 0; // if any element of array is null I set array size to 0
+            }
+            else
+            {
+                //a loop for creating a matrix:
+                /// <summary>
+                /// example of 3x3 diagonal matrix
+                /// [(i==j), (i!=j), (i!=j)] (X, 0, 0)
+                /// [(i!=j), (i==j), (i!=j)] (0, X, 0)
+                /// [(i!=j), (i!=j), (i==j)] (0, 0, X)
+                /// </summary>
+                for (row = 0; row < _size; row++)
+                {
+                    for (column = 0; column < _size; column++)
+                    {
+                        if (row != column && (row < 0 && column < 0) && (row >= _size && column >= _size))
+                        {
+                            matrix[row, column] = 0;
+                        }
+                        else
+                        {
 
-            /// <summary>
-            /// example of 3x3 diagonal matrix
-            /// [(i==j), (i!=j), (i!=j)] (X, 0, 0)
-            /// [(i!=j), (i==j), (i!=j)] (0, X, 0)
-            /// [(i!=j), (i!=j), (i==j)] (0, 0, X)
-            /// </summary>
-            //a loop for creating a matrix:
-
+                        }
+                    }
+                }
+            }
         }
         //5.
-        private int Track()
+        public int Track()
         {
-
-            int sum = 0;
-            //implement logic
+            int sum = _diagonalMatrixArray.Sum();            
             return sum;
         }
     }
 }
+       
