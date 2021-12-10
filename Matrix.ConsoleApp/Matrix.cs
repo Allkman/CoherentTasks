@@ -23,6 +23,12 @@ using System.Threading.Tasks;
 /// 7.  Create a diagonal matrix extension method that adds two diagonal matrices. The result of the method is a new diagonal matrix.
 /// If the dimensions of the matrix do not match, the smaller matrix is padded with zeros.
 /// </summary>
+/// <summary>
+/// example of 3x3 diagonal matrix
+/// [(i==j), (i!=j), (i!=j)] (X, 0, 0) is to index this 'X'
+/// [(i!=j), (i==j), (i!=j)] (0, X, 0)
+/// [(i!=j), (i!=j), (i==j)] (0, 0, X)
+/// </summary>
 namespace Matrix.ConsoleApp
 {
     internal class Matrix
@@ -32,21 +38,31 @@ namespace Matrix.ConsoleApp
         //2.
         public int Size => _size;
         private readonly int _size;
-       
-        //4.
-        private int row;
-        private int column;
+
+
         //3.
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
         //https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/
+        //the purpose of the indexer
+        //https://www.geeksforgeeks.org/c-sharp-multidimensional-indexers/ 
+        //4. The two indices as a multidimensional indexer
+
+        public int this[int i, int j]
+        {
+            get
+            {
+                if (i == j) return _diagonalMatrixArray[i];
+                else return 0;
+            }
+            set => _diagonalMatrixArray[i] = value;
+        }
         //passing a a single-dimentional array of params as in ms.docs
         public Matrix(params int[] diagonalMatrixArray)
         {
             _diagonalMatrixArray = diagonalMatrixArray;
+            _size = diagonalMatrixArray.Length;
 
-            int[,] matrix = new int[row, column];
-                _size = diagonalMatrixArray.Length;
             //validating if params element is null
             //https://stackoverflow.com/questions/6584131/c-sharp-is-it-possible-to-have-null-params @Joshua Rodgers answer
             if (diagonalMatrixArray == null)
@@ -56,24 +72,12 @@ namespace Matrix.ConsoleApp
             else
             {
                 //a loop for creating a matrix:
-                /// <summary>
-                /// example of 3x3 diagonal matrix
-                /// [(i==j), (i!=j), (i!=j)] (X, 0, 0)
-                /// [(i!=j), (i==j), (i!=j)] (0, X, 0)
-                /// [(i!=j), (i!=j), (i==j)] (0, 0, X)
-                /// </summary>
-                for (row = 0; row < _size; row++)
+                for (int row = 0; row < _size; row++)
                 {
-                    for (column = 0; column < _size; column++)
+                    Console.WriteLine();
+                    for (int column = 0; column < _size; column++)
                     {
-                        if (row != column && (row < 0 && column < 0) && (row >= _size && column >= _size))
-                        {
-                            matrix[row, column] = 0;
-                        }
-                        else
-                        {
-
-                        }
+                        Console.Write($"{this[row, column]}, ");
                     }
                 }
             }
@@ -81,9 +85,13 @@ namespace Matrix.ConsoleApp
         //5.
         public int Track()
         {
-            int sum = _diagonalMatrixArray.Sum();            
+            int sum = _diagonalMatrixArray.Sum();
             return sum;
+        }
+        //6.
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
         }
     }
 }
-       

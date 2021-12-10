@@ -23,13 +23,22 @@ namespace Matrix.ConsoleApp
             }
             Console.WriteLine();
             Console.WriteLine("[------------------]");
-
+            Console.WriteLine();
             Console.WriteLine("Matrix 1:");
             var matrix1 = new Matrix(matrixArray1);
             Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine($"The sum of diagonal: {matrix1.Track()}");           
+
+            Console.WriteLine();
             Console.WriteLine("Matrix 2:");
             var matrix2 = new Matrix(matrixArray2);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine($"The sum of diagonal: {matrix2.Track()}");      
             
+            Console.WriteLine();
+            Console.ReadLine();
         }
     }    
 }
