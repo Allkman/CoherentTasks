@@ -51,8 +51,19 @@ namespace Matrix.ConsoleApp
         public int this[int i, int j]
         {
             get
-            {
-                if (i == j) return _diagonalMatrixArray[i];
+            {                
+                if (i < 0 && j < 0 || i >= _size && j >= _size)
+                {
+                    return 0;
+                }
+                else if (i != j)
+                {
+                    return 0;
+                }
+                else if (i == j)
+                { 
+                    return _diagonalMatrixArray[i];
+                }
                 else return 0;
             }
             set => _diagonalMatrixArray[i] = value;
@@ -89,9 +100,20 @@ namespace Matrix.ConsoleApp
             return sum;
         }
         //6.
+        public override string ToString()
+        {
+            return string.Format("{0}, ", _diagonalMatrixArray);
+        }
+        //https://stackoverflow.com/questions/9317582/correct-way-to-override-equals-and-gethashcode
         public override bool Equals(object obj)
         {
-            return base.Equals(obj);
+            var item = obj as Matrix;
+            if (item == null)
+            {
+                return false;
+            }
+               //as condition is saying: determains if two strings have the same value
+            return this._diagonalMatrixArray.ToString() == item._diagonalMatrixArray.ToString(); //true
         }
     }
 }

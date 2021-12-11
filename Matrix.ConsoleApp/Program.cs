@@ -6,7 +6,7 @@ namespace Matrix.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var matrixArray1 = new int[] { 4, 3, 6, 1, 5 };
+            var matrixArray1 = new int[] { 8, 2, 7 };
             var matrixArray2 = new int[] { 8, 2, 7 };
 
             Console.WriteLine("[------------------]");
@@ -35,8 +35,10 @@ namespace Matrix.ConsoleApp
             var matrix2 = new Matrix(matrixArray2);
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine($"The sum of diagonal: {matrix2.Track()}");      
-            
+            Console.WriteLine($"The sum of diagonal: {matrix2.Track()}");
+
+            Console.WriteLine(matrix1.Equals(matrix2));
+
             Console.WriteLine();
             Console.ReadLine();
         }
