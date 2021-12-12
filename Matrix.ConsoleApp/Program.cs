@@ -6,8 +6,8 @@ namespace Matrix.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var matrixArray1 = new int[] { 8, 2, 7 };
-            var matrixArray2 = new int[] { 8, 2, 7 };
+            var matrixArray2 = new int[] { 8, 2, 5, 1, 1 };
+            var matrixArray1 = new int[] { 3, 3, 4 };
 
             Console.WriteLine("[------------------]");
             Console.WriteLine("The diagonal vector of the matrix 1");
@@ -36,9 +36,15 @@ namespace Matrix.ConsoleApp
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine($"The sum of diagonal: {matrix2.Track()}");
-
-            Console.WriteLine(matrix1.Equals(matrix2));
-
+            Console.WriteLine();
+            Console.WriteLine($"Two matrixes are equal: {matrix1.Equals(matrix2)}");
+            Console.WriteLine();
+            Console.WriteLine("The result of the addition of two above matrices:");
+            matrix1.GetNewMatrixFromAddingTwoMatrices(matrix2);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("And the result if I switch Matrix1 with Matrix2");
+            matrix2.GetNewMatrixFromAddingTwoMatrices(matrix1);
             Console.WriteLine();
             Console.ReadLine();
         }

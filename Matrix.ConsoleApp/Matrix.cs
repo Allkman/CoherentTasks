@@ -34,7 +34,7 @@ namespace Matrix.ConsoleApp
     internal class Matrix
     {
         //1.
-        private int[] _diagonalMatrixArray;
+        public int[] DiagonalMatrixArray;
         //2.
         public int Size => _size;
         private readonly int _size;
@@ -62,16 +62,16 @@ namespace Matrix.ConsoleApp
                 }
                 else if (i == j)
                 { 
-                    return _diagonalMatrixArray[i];
+                    return DiagonalMatrixArray[i];
                 }
                 else return 0;
             }
-            set => _diagonalMatrixArray[i] = value;
+            set => DiagonalMatrixArray[i] = value;
         }
         //passing a a single-dimentional array of params as in ms.docs
         public Matrix(params int[] diagonalMatrixArray)
         {
-            _diagonalMatrixArray = diagonalMatrixArray;
+            DiagonalMatrixArray = diagonalMatrixArray;
             _size = diagonalMatrixArray.Length;
 
             //validating if params element is null
@@ -96,13 +96,13 @@ namespace Matrix.ConsoleApp
         //5.
         public int Track()
         {
-            int sum = _diagonalMatrixArray.Sum();
+            int sum = DiagonalMatrixArray.Sum();
             return sum;
         }
         //6.
         public override string ToString()
         {
-            return string.Format("{0}, ", _diagonalMatrixArray);
+            return string.Format("{0}, ", DiagonalMatrixArray);
         }
         //https://stackoverflow.com/questions/9317582/correct-way-to-override-equals-and-gethashcode
         public override bool Equals(object obj)
@@ -113,7 +113,7 @@ namespace Matrix.ConsoleApp
                 return false;
             }
                //as condition is saying: determains if two strings have the same value
-            return this._diagonalMatrixArray.ToString() == item._diagonalMatrixArray.ToString(); //true
+            return this.DiagonalMatrixArray.ToString() == item.DiagonalMatrixArray.ToString(); //true
         }
     }
 }
