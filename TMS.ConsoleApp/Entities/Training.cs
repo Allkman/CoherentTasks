@@ -11,13 +11,13 @@ namespace TMS.ConsoleApp.Entities
         {
             trainings.Add(training);
         }
-        public Training( string description)
+        public Training(string description)
         {
             Desctription = description;
         }
         public bool IsPractical()
         {
-            return trainings.All(l => l is PracticalLesson);
+            return trainings.All(x => x is PracticalLesson);
         }
         void Clone()
         {

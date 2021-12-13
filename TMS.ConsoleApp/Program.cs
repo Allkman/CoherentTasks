@@ -7,13 +7,13 @@ namespace TMS.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var training = new Training("");
-           
+            var training = new Training("");           
 
             var practicalLesson = new PracticalLesson("Working with variables", "In-progress", null);
             Console.WriteLine(training.IsPractical());
             var lecture1 = new Lecture("C# basics", "Variables", practicalLesson);
-            training.Add( training);
+            training.Add(lecture1);
+            Console.WriteLine(training.IsPractical());
         }
     }
 }
