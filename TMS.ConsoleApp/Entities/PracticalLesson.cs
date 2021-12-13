@@ -6,9 +6,14 @@ using System.Threading.Tasks;
 
 namespace TMS.ConsoleApp.Entities
 {
-    internal class PracticalLesson
+    internal class PracticalLesson : Training
     {
-        public string Task { get; set; }
-        public string Solution { get; set; }
+        public string? TaskCondition { get; set; }
+        public string? Solution { get; set; }
+        public PracticalLesson(string description, string taskCondition, string solution) :base(description)
+        {
+            TaskCondition = taskCondition;
+            Solution = solution;
+        }
     }
 }

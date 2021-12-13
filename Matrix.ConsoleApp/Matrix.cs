@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 /// <summary>
 /// Task 1. A diagonal matrix is a square matrix, all elements of which outside the main diagonal 
 /// are equal to zero (read here Diagonal matrix - https://en.wikipedia.org/wiki/Diagonal_matrix).
@@ -78,17 +76,17 @@ namespace Matrix.ConsoleApp
             //https://stackoverflow.com/questions/6584131/c-sharp-is-it-possible-to-have-null-params @Joshua Rodgers answer
             if (diagonalMatrixArray == null)
             {
-                _size = 0; // if any element of array is null I set array size to 0
+                _size = 0;
             }
             else
             {
-                //a loop for creating a matrix:
+                //a loop for creating a matrix, iterating through rows and columns:
                 for (int row = 0; row < _size; row++)
                 {
                     Console.WriteLine();
                     for (int column = 0; column < _size; column++)
                     {
-                        Console.Write($"{this[row, column]}, ");
+                        Console.Write($"{this[row, column]} ");
                     }
                 }
             }
@@ -104,7 +102,6 @@ namespace Matrix.ConsoleApp
         {
             return string.Format("{0}, ", DiagonalMatrixArray);
         }
-        //https://stackoverflow.com/questions/9317582/correct-way-to-override-equals-and-gethashcode
         public override bool Equals(object obj)
         {
             var item = obj as Matrix;
@@ -112,8 +109,8 @@ namespace Matrix.ConsoleApp
             {
                 return false;
             }
-               //as condition is saying: determains if two strings have the same value
-            return this.DiagonalMatrixArray.ToString() == item.DiagonalMatrixArray.ToString(); //true
+            //https://stackoverflow.com/questions/3232744/easiest-way-to-compare-arrays-in-c-sharp
+            return Enumerable.SequenceEqual(this.DiagonalMatrixArray, item.DiagonalMatrixArray);
         }
     }
 }

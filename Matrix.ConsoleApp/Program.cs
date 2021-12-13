@@ -6,7 +6,7 @@ namespace Matrix.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var matrixArray2 = new int[] { 8, 2, 5, 1, 1 };
+            var matrixArray2 = new int[] { 8, 2, 3, 3, 4 };
             var matrixArray1 = new int[] { 3, 3, 4 };
 
             Console.WriteLine("[------------------]");

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Matrix.ConsoleApp;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,15 +9,22 @@ namespace TMS.ConsoleApp.Entities
 {
     internal class Training
     {
-        public List<Lecture> Lectures { get; set; } = new List<Lecture>();
-        public List<PracticalLesson> PracticalLessons { get; set; }
-        void Add()
+        private List<Training> trainings = new List<Training>();
+        private List<Lecture> lectures = new List<Lecture>();
+        private List<PracticalLesson> PracticalLessons = new List<PracticalLesson>();
+        public string Desctription { get; set; }
+
+        public void Add()
         {
 
         }
-        bool IsPractical()
+        public Training( string description)
         {
-            return true;
+            Desctription = description;
+        }
+        public bool IsPractical()
+        {
+           
         }
         void Clone()
         {
