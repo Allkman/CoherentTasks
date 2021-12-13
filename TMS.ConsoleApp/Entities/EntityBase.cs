@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Matrix.ConsoleApp
+namespace TMS.ConsoleApp.Entities
 {
-    public enum ETrainingType
+    class EntityBase
     {
-        Lecture,
-        PracticalLesson,
+        public string? Desctription { get; set; } = string.Empty;
     }
 }

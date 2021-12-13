@@ -1,22 +1,15 @@
-﻿using Matrix.ConsoleApp;
-using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace TMS.ConsoleApp.Entities
 {
-    internal class Training
+    internal class Training : EntityBase
     {
-        private List<Training> trainings = new List<Training>();
-        private List<Lecture> lectures = new List<Lecture>();
-        private List<PracticalLesson> PracticalLessons = new List<PracticalLesson>();
-        public string Desctription { get; set; }
+        private List<EntityBase> trainings = new List<EntityBase>();
 
-        public void Add()
+        public void Add(EntityBase training)
         {
-
+            trainings.Add(training);
         }
         public Training( string description)
         {
@@ -24,7 +17,7 @@ namespace TMS.ConsoleApp.Entities
         }
         public bool IsPractical()
         {
-           
+            return trainings.All(l => l is PracticalLesson);
         }
         void Clone()
         {

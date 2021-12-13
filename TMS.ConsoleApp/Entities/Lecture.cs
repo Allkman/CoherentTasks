@@ -6,14 +6,16 @@ using System.Threading.Tasks;
 
 namespace TMS.ConsoleApp.Entities
 {
-    internal class Lecture : Training
+    internal class Lecture : EntityBase
     {
         public string Topic { get; set; } = string.Empty;
         public PracticalLesson PracticalLesson { get; set; }
-        public Lecture(string description, string topic, PracticalLesson practicalLesson):base(description)
+        public Lecture(string description, string topic, PracticalLesson practicalLesson)
         {
+            Desctription = description;
             Topic = topic;
             PracticalLesson = practicalLesson;
+
         }
     }
 }
