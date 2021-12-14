@@ -100,7 +100,7 @@ namespace Matrix.ConsoleApp
         //6.
         public override string ToString()
         {
-            return string.Format("{0}, ", DiagonalMatrixArray);
+            return string.Join(", ", DiagonalMatrixArray);
         }
         public override bool Equals(object obj)
         {

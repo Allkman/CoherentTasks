@@ -28,16 +28,22 @@ namespace Matrix.ConsoleApp
             var matrix1 = new Matrix(matrixArray1);
             Console.WriteLine();
             Console.WriteLine();
-            Console.WriteLine($"The sum of diagonal: {matrix1.Track()}");           
-
+            Console.WriteLine("Track() method");
+            Console.WriteLine($"The sum of diagonal: {matrix1.Track()}");
+            Console.WriteLine("ToString() method");
+            Console.WriteLine(matrix1.ToString()); 
             Console.WriteLine();
             Console.WriteLine("Matrix 2:");
             var matrix2 = new Matrix(matrixArray2);
             Console.WriteLine();
             Console.WriteLine();
+            Console.WriteLine("Track() method");
             Console.WriteLine($"The sum of diagonal: {matrix2.Track()}");
+            Console.WriteLine("ToString() method");
+            Console.WriteLine(matrix2.ToString());
             Console.WriteLine();
             Console.WriteLine($"Two matrixes are equal: {matrix1.Equals(matrix2)}");
+            
             Console.WriteLine();
             Console.WriteLine("The result of the addition of two above matrices:");
             matrix1.GetNewMatrixFromAddingTwoMatrices(matrix2);
