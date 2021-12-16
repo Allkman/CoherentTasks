@@ -1,20 +1,31 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Matrix.ConsoleApp
 {
-    internal static class  MatrixExtension //static because i dont need to create it
+    internal static class MatrixExtension 
     {
-        public static Matrix GetNewMatrixFromAddingTwoMatrices(this Matrix a, Matrix b)
+        public static Matrix GetNewMatrixFromAddingTwoMatrices(this Matrix first, Matrix second)
         {
-            int sizeOfNewMatrix = 0;
-            var c = new int[sizeOfNewMatrix];//creating a new matrix = result of addition of two 
-
-            if (a.Size != b.Size)
+            //adding elements of two arrays
+            int[] array = new int[first.Size];
+            if (first.Size > second.Size)
             {
-                c = a.DiagonalMatrixArray.Concat(b.DiagonalMatrixArray).ToArray();
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = first[i, i] + second[i, i];
+                }
             }
-                       
-            return new Matrix(c);
+            //every other array size is ok
+            else
+            {
+                array = new int[second.Size];
+                for (int i = 0; i < array.Length; i++)
+                {
+                    array[i] = first[i, i] + second[i, i];
+                }
+            }
+            return new Matrix(array);
         }
     }
 }

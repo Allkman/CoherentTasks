@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 
 /// <summary>
@@ -36,12 +38,6 @@ namespace Matrix.ConsoleApp
         //2.
         public int Size => _size;
         private readonly int _size;
-
-
-        //3.
-        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
-        //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
-        //https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/
         //the purpose of the indexer
         //https://www.geeksforgeeks.org/c-sharp-multidimensional-indexers/ 
         //4. The two indices as a multidimensional indexer
@@ -67,6 +63,10 @@ namespace Matrix.ConsoleApp
             set => DiagonalMatrixArray[i] = value;
         }
         //passing a a single-dimentional array of params as in ms.docs
+        //3.
+        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
+        //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
+        //https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/
         public Matrix(params int[] diagonalMatrixArray)
         {
             DiagonalMatrixArray = diagonalMatrixArray;
@@ -104,8 +104,14 @@ namespace Matrix.ConsoleApp
         }
         public override bool Equals(object obj)
         {
+            //according to Jeffrey Richter (CLR via C#)
             var item = obj as Matrix;
-            if (item == null)
+            if (item == null) //if obj args is null return false
+            {
+                return false;
+            }
+            // If  objects are different types,  they  can't be equal.  
+            if (this.GetType() != item.GetType())
             {
                 return false;
             }
