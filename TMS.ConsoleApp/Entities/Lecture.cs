@@ -9,12 +9,10 @@ namespace TMS.ConsoleApp.Entities
     internal class Lecture : EntityBase
     {
         public string Topic { get; set; } = string.Empty;
-        public PracticalLesson? PracticalLesson { get; set; }
-        public Lecture(string description, string topic, PracticalLesson practicalLesson)
+        public Lecture(string description, string topic)
         {
             Desctription = description;
             Topic = topic;
-            PracticalLesson = practicalLesson;
 
         }
     }

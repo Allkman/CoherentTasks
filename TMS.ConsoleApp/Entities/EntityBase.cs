@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TMS.ConsoleApp.Entities
 {
-    class EntityBase
+    internal class EntityBase
     {
         public string? Desctription { get; set; } = string.Empty;
     }

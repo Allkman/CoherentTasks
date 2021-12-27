@@ -21,7 +21,7 @@ namespace TMS.ConsoleApp
             Console.WriteLine();
             Console.WriteLine("Adding a lecture to the training.");
 
-            var lecture1 = new Lecture("C#", "Variables", practicalLesson);
+            var lecture1 = new Lecture("C#", "Variables");
             trainingType.Add(lecture1);
             Console.WriteLine("After adding a Lecture to the Training:");
             Console.WriteLine($"The answer to if \"Training contains only Practical Lesson\" is: {trainingType.IsPractical()}");

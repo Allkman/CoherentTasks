@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 /// <summary>
 /// Task 1. A diagonal matrix is a square matrix, all elements of which outside the main diagonal 
@@ -31,17 +32,17 @@ using System.Linq;
 /// </summary>
 namespace Matrix.ConsoleApp
 {
-    internal class Matrix
+    internal class DiagonalMatrix
     {
         //1.
-        public int[] DiagonalMatrixArray;
+        private int[] _diagonalMatrixArray;
         //2.
         public int Size => _size;
-        private readonly int _size;
+        readonly int _size;
+
         //the purpose of the indexer
         //https://www.geeksforgeeks.org/c-sharp-multidimensional-indexers/ 
         //4. The two indices as a multidimensional indexer
-
         public int this[int i, int j]
         {
             get
@@ -56,22 +57,23 @@ namespace Matrix.ConsoleApp
                 }
                 else if (i == j)
                 { 
-                    return DiagonalMatrixArray[i];
+                    return _diagonalMatrixArray[i];
+                }
+                else if (i <_size)
+                {
+                    return 0;
                 }
                 else return 0;
             }
-            set => DiagonalMatrixArray[i] = value;
+            set => _diagonalMatrixArray[i] = value;
         }
         //passing a a single-dimentional array of params as in ms.docs
         //3.
         //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
         //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
         //https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/
-        public Matrix(params int[] diagonalMatrixArray)
+        public DiagonalMatrix(params int[] diagonalMatrixArray)
         {
-            DiagonalMatrixArray = diagonalMatrixArray;
-            _size = diagonalMatrixArray.Length;
-
             //validating if params element is null
             //https://stackoverflow.com/questions/6584131/c-sharp-is-it-possible-to-have-null-params @Joshua Rodgers answer
             if (diagonalMatrixArray == null)
@@ -80,43 +82,46 @@ namespace Matrix.ConsoleApp
             }
             else
             {
-                //a loop for creating a matrix, iterating through rows and columns:
-                for (int row = 0; row < _size; row++)
-                {
-                    Console.WriteLine();
-                    for (int column = 0; column < _size; column++)
-                    {
-                        Console.Write($"{this[row, column]} ");
-                    }
-                }
+                _diagonalMatrixArray = diagonalMatrixArray;
+                _size = diagonalMatrixArray.Length;
+                Array.Copy(diagonalMatrixArray, _diagonalMatrixArray, _size);
             }
         }
         //5.
         public int Track()
         {
-            int sum = DiagonalMatrixArray.Sum();
-            return sum;
+            return _diagonalMatrixArray.Sum();
         }
         //6.
         public override string ToString()
         {
-            return string.Join(", ", DiagonalMatrixArray);
+            var sb = new StringBuilder();
+            if (Size == 0)
+            {
+                return string.Empty;
+            }
+            //a loop for creating a matrix, iterating through rows and columns:
+            for (int row = 0; row < _size; row++)
+            {
+                sb.AppendLine();
+                for (int column = 0; column < _size; column++)
+                {
+                    sb.Append(this[row, column]);
+                }
+            }
+            return sb.ToString();
         }
         public override bool Equals(object obj)
         {
             //according to Jeffrey Richter (CLR via C#)
-            var item = obj as Matrix;
-            if (item == null) //if obj args is null return false
-            {
-                return false;
-            }
+            var item = obj as DiagonalMatrix;
             // If  objects are different types,  they  can't be equal.  
             if (this.GetType() != item.GetType())
             {
                 return false;
             }
             //https://stackoverflow.com/questions/3232744/easiest-way-to-compare-arrays-in-c-sharp
-            return Enumerable.SequenceEqual(this.DiagonalMatrixArray, item.DiagonalMatrixArray);
+            return Enumerable.SequenceEqual(this._diagonalMatrixArray, item._diagonalMatrixArray);
         }
     }
 }

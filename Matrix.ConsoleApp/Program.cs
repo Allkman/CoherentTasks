@@ -6,8 +6,8 @@ namespace Matrix.ConsoleApp
     {
         static void Main(string[] args)
         {
-            var matrixArray1 = new int[] { 3, 3, 4};
-            var matrixArray2 = new int[] { 0, 0, 5, 5 };
+            var matrixArray1 = new int[] { 3, 3, 2};
+            var matrixArray2 = new int[] { 0, 0, 5,1 };
 
             Console.WriteLine("[------------------]");
             Console.WriteLine("The diagonal vector of the matrix 1");
@@ -25,7 +25,8 @@ namespace Matrix.ConsoleApp
             Console.WriteLine("[------------------]");
             Console.WriteLine();
             Console.WriteLine("Matrix 1:");
-            var matrix1 = new Matrix(matrixArray1);
+            var matrix1 = new DiagonalMatrix(matrixArray1);
+
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Track() method");
@@ -34,7 +35,7 @@ namespace Matrix.ConsoleApp
             Console.WriteLine(matrix1.ToString()); 
             Console.WriteLine();
             Console.WriteLine("Matrix 2:");
-            var matrix2 = new Matrix(matrixArray2);
+            var matrix2 = new DiagonalMatrix(matrixArray2);
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Track() method");
@@ -46,8 +47,8 @@ namespace Matrix.ConsoleApp
             
             Console.WriteLine();
             Console.WriteLine("The result of the addition of two above matrices:");
-            matrix1.GetNewMatrixFromAddingTwoMatrices(matrix2);
-
+            var combainedMatrix = MatrixExtension.GetNewMatrixFromAddingTwoMatrices(matrix1,matrix2).ToString();
+            Console.WriteLine(combainedMatrix);
             Console.WriteLine();
             Console.ReadLine();
         }

@@ -3,29 +3,26 @@ using System.Linq;
 
 namespace Matrix.ConsoleApp
 {
-    internal static class MatrixExtension 
+    internal static class MatrixExtension
     {
-        public static Matrix GetNewMatrixFromAddingTwoMatrices(this Matrix first, Matrix second)
+        public static DiagonalMatrix GetNewMatrixFromAddingTwoMatrices(this DiagonalMatrix first, DiagonalMatrix second)
         {
-            //adding elements of two arrays
-            int[] array = new int[first.Size];
-            if (first.Size > second.Size)
+            var newArrayLength = 0;
+            if (first.Size > second.Size || first.Size == second.Size)
             {
-                for (int i = 0; i < array.Length; i++)
-                {
-                    array[i] = first[i, i] + second[i, i];
-                }
+                newArrayLength = first.Size;
             }
-            //every other array size is ok
-            else
+            else if (second.Size > first.Size)
             {
-                array = new int[second.Size];
-                for (int i = 0; i < array.Length; i++)
-                {
-                    array[i] = first[i, i] + second[i, i];
-                }
+                newArrayLength = second.Size;
             }
-            return new Matrix(array);
+            int[] array = new int[newArrayLength];
+
+            for (int i = 0; i < array.Length; i++)
+            {
+                array[i] = first[i, i] + second[i, i];
+            }
+            return new DiagonalMatrix(array);
         }
     }
 }
