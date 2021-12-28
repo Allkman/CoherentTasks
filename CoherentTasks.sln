@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31911.196
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.32002.185
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1.NumberListWith2TwosInTernary", "HomeWork1\Task1.NumberListWith2TwosInTernary\Task1.NumberListWith2TwosInTernary.csproj", "{6BDD7210-B9FC-48A5-8793-C6133F2A3986}"
 EndProject
@@ -15,11 +15,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork2", "HomeWork2", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task1.DiagonalMatrix", "Task1.DiagonalMatrix", "{C48A5B1E-DF62-4A3B-B8F0-5771A0067F07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Matrix.ConsoleApp", "Matrix.ConsoleApp\Matrix.ConsoleApp.csproj", "{F30D5449-E4F3-466B-8B11-C4FE2BBB58F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Matrix.ConsoleApp", "Matrix.ConsoleApp\Matrix.ConsoleApp.csproj", "{F30D5449-E4F3-466B-8B11-C4FE2BBB58F0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task2.TrainingManagementSystem", "Task2.TrainingManagementSystem", "{4082BCA5-D7DF-468E-99D3-8473AE25DBA6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TMS.ConsoleApp", "TMS.ConsoleApp\TMS.ConsoleApp.csproj", "{7DA7D567-555B-4285-9FEF-7EED85BAAF37}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMS.ConsoleApp", "TMS.ConsoleApp\TMS.ConsoleApp.csproj", "{7DA7D567-555B-4285-9FEF-7EED85BAAF37}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork3", "HomeWork3", "{DA9A6CB4-EA57-4ACA-9D3E-6FAA0A05E223}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1.PianoKeyboard", "Task1.PianoKeyboard\Task1.PianoKeyboard.csproj", "{57781A2D-0943-47E7-AEC7-445674C43FF8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,10 @@ Global
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57781A2D-0943-47E7-AEC7-445674C43FF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57781A2D-0943-47E7-AEC7-445674C43FF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57781A2D-0943-47E7-AEC7-445674C43FF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57781A2D-0943-47E7-AEC7-445674C43FF8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -59,6 +67,7 @@ Global
 		{F30D5449-E4F3-466B-8B11-C4FE2BBB58F0} = {C48A5B1E-DF62-4A3B-B8F0-5771A0067F07}
 		{4082BCA5-D7DF-468E-99D3-8473AE25DBA6} = {8B822939-16BE-4BEA-B5E2-267D6F469444}
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37} = {4082BCA5-D7DF-468E-99D3-8473AE25DBA6}
+		{57781A2D-0943-47E7-AEC7-445674C43FF8} = {DA9A6CB4-EA57-4ACA-9D3E-6FAA0A05E223}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0DD6C7D-EFC6-44B1-967E-0EBF104C2CE1}
