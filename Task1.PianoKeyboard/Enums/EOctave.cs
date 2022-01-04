@@ -8,6 +8,6 @@ namespace Task1.PianoKeyboard.Enums
 {
     internal enum EOctave
     {
-        SubContra, Contra, Greate, Small, OneLine, TwoLine, ThreeLine, FourLine, FiveLine
+        SubContra, Contra, Greate, Small, First, Second, Third, Fourth, Fifth
     }
 }
