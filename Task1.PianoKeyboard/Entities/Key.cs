@@ -27,6 +27,14 @@ namespace Task1.PianoKeyboard.Entities
         {
             if (this._octave - other._octave < -1) return 1;
             if (this._octave - other._octave > 1) return -1;
+            if (this._octave == EOctave.SubContra)
+            {
+                return ComparingNotesOfSubContraOctave(other);
+            }
+            if (other._octave == EOctave.Fifth)
+            {
+                return ComparingNoteOfFifthOctave(other);
+            }            
             // when two NEIGHBOUR octave NOTES (B and C) are compared
             if (this._octave - other._octave == -1 || this._octave - other._octave == 1)
             {
@@ -43,7 +51,7 @@ namespace Task1.PianoKeyboard.Entities
                     return ComparingTwoNotes(other);
                 }
                 if ((this._note - other._note) == 0)
-                {
+                {  
                     return ComparingTwoSameNotes(other);
                 }                
                 //           D  follows    F
@@ -51,6 +59,54 @@ namespace Task1.PianoKeyboard.Entities
                 // F precedes  D
                 return -1;
             }
+        }
+        private readonly int ComparingNoteOfFifthOctave(Key other)
+        {
+            if (other._octave == EOctave.Fifth)
+            {
+                if (other._note == ENote.C)
+                {
+                    if (other._accidental == EAccidental.Sharp)
+                    {
+                        Console.WriteLine("C8 is 88th Key, it cannot have Sharp Note");
+                    }
+                    if (this._accidental - other._accidental == 1) return 0;
+                }
+                else Console.WriteLine("Cannot compare non existing Key");
+            }
+            return 1;
+        }
+        private readonly int ComparingNotesOfSubContraOctave(Key other)
+        {
+            if (this._octave == EOctave.SubContra)
+            {
+                if (this._note == ENote.A && other._note == ENote.B)
+                {
+                    //           A   follows   B
+                    if ((this._note - other._note) == -2)
+                    {
+                        if (this._accidental - other._accidental == 1 ||
+                            this._accidental - other._accidental == -1 ||
+                            this._accidental - other._accidental == -2) return 1;
+                        // when its the same key!    
+                        if (this._accidental - other._accidental == 2) return 0;
+                    }
+                    //          B   precedes   A while comparing only!!! in Program.cs
+                    if ((this._note - other._note) == 2)
+                    {
+                        // when this.Note always precedes(KEY is on the RIGHT) the other.Note  
+                        if (this._accidental - other._accidental == 0 ||
+                            this._accidental - other._accidental == -1 ||
+                            this._accidental - other._accidental == 1 ||
+                            this._accidental - other._accidental == 2) return -1;
+                        // when its the same key!    
+                        if (this._accidental - other._accidental == -2) return 0;
+
+                    }
+                }
+                else Console.WriteLine("Cannot compare non existing Key");
+            }
+            return -1;
         }
         private readonly int ComparingTwoNotesFromNeighbourOctaves(Key other)
         {
@@ -134,6 +190,7 @@ namespace Task1.PianoKeyboard.Entities
         }
         public override bool Equals(object obj)
         {
+
             return this.CompareTo((Key)obj) == 0;
         }
     }

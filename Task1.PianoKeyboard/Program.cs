@@ -2,8 +2,8 @@
 using Task1.PianoKeyboard.Entities;
 using Task1.PianoKeyboard.Enums;
 
-var C = new Key(ENote.D, EAccidental.Flat, EOctave.Second);
-var D = new Key(ENote.C, EAccidental.Flat, EOctave.Second);
+var C = new Key(ENote.B, EAccidental.NoSign, EOctave.Fourth);
+var D = new Key(ENote.C, EAccidental.Flat, EOctave.Fifth);
 //Console.WriteLine(c);
 //Console.WriteLine(d);
 //Console.WriteLine(c.CompareTo(d));
