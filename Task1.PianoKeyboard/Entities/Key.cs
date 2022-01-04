@@ -23,7 +23,6 @@ namespace Task1.PianoKeyboard.Entities
         {
             return $"In {_octave} octave. Note: {_note} {_accidental}";
         }
-
         public int CompareTo(Key other)
         {
             if (this._octave - other._octave < -1) return 1;
@@ -31,65 +30,110 @@ namespace Task1.PianoKeyboard.Entities
             // when two NEIGHBOUR octave NOTES (B and C) are compared
             if (this._octave - other._octave == -1 || this._octave - other._octave == 1)
             {
-                //                  B  from lower octave  follows C         
-                if (this._note == ENote.B && other._note == ENote.C ||
-                    // or when I compare C   from upper octave to  B
-                    this._note == ENote.C && other._note == ENote.B)
-                {
-                    if (this._accidental - other._accidental == 0 ||
-                        this._accidental - other._accidental == -2 ||
-                        this._accidental == EAccidental.Flat) return 1;
-                    if (this._accidental - other._accidental == 1 ||
-                        this._accidental - other._accidental == -1) return 0;
-                }
-                return 1;
+                return ComparingTwoNotesFromNeighbourOctaves(other);
             }
             else
             {
-                //           C   follows   D
-                if ((this._note - other._note) == -1)
+                if ((this._note - other._note) == -2 || (this._note - other._note) == 2)
                 {
-                    if (this._accidental - other._accidental == 1 ||
-                        this._accidental - other._accidental == -1 ||
-                        this._accidental - other._accidental == -2) return 1;
-                    // when its the same key!    
-                    if (this._accidental - other._accidental == 2) return 0;
-                    // when this.Note always precedes other.Note // although this can`t happen here
+                    return ComparingTwoNotesWithBlackKeyBetweenThem(other);
                 }
-                //          D   precedes   C
-                if ((this._note - other._note) == 1)
+                if((this._note - other._note) == -1 || (this._note - other._note) == 1 )
                 {
-                    // when this.Note always precedes(KEY is on the RIGHT) the other.Note  
-                    if (this._accidental - other._accidental == 0 ||
-                        this._accidental - other._accidental == -1 ||
-                        this._accidental - other._accidental == 1 ||
-                        this._accidental - other._accidental == 2) return -1;
-                    // when its the same key!    
-                    if (this._accidental - other._accidental == -2) return 0;
-                    // when this.Note always follows the other.Note // although this can`t happen here
-                    return 1;
+                    return ComparingTwoNotes(other);
                 }
-                //         D  is the same  D
                 if ((this._note - other._note) == 0)
                 {
-                    //when this.Note always follows(KEY is on the LEFT) the other.Note
-                    if (this._accidental - other._accidental == -1 ||
-                        this._accidental - other._accidental == -2) return 1;
-                    //when this.Note always precedes(KEY is on the RIGHT) the other.Note
-                    if (this._accidental - other._accidental == 1 ||
-                        this._accidental - other._accidental == 2) return -1;
-                    // when its the same key!
-                    return 0;
-                }
+                    return ComparingTwoSameNotes(other);
+                }                
                 //           D  follows    F
                 if ((this._note - other._note) < -1) return 1;
                 // F precedes  D
                 return -1;
             }
         }
+        private readonly int ComparingTwoNotesFromNeighbourOctaves(Key other)
+        {
+            //                  B  from lower octave  follows C         
+            if (this._note == ENote.B && other._note == ENote.C ||
+                // or when I compare C   from upper octave to  B
+                this._note == ENote.C && other._note == ENote.B)
+            {
+                if (this._accidental - other._accidental == 0 ||
+                    this._accidental - other._accidental == -2 ||
+                    this._accidental == EAccidental.Flat) return 1;
+                if (this._accidental - other._accidental == 1 ||
+                    this._accidental - other._accidental == -1) return 0;
+            }
+            return 1;
+        }
+        private readonly int ComparingTwoNotesWithBlackKeyBetweenThem(Key other)
+        {
+            //           C   follows   D
+            if ((this._note - other._note) == -2)
+            {
+                if (this._accidental - other._accidental == 1 ||
+                    this._accidental - other._accidental == -1 ||
+                    this._accidental - other._accidental == -2) return 1;
+                // when its the same key!    
+                if (this._accidental - other._accidental == 2) return 0;
+            }
+            //          D   precedes   C while comparing only!!! in Program.cs
+            if ((this._note - other._note) == 2)
+            {
+                // when this.Note always precedes(KEY is on the RIGHT) the other.Note  
+                if (this._accidental - other._accidental == 0 ||
+                    this._accidental - other._accidental == -1 ||
+                    this._accidental - other._accidental == 1 ||
+                    this._accidental - other._accidental == 2) return -1;
+                // when its the same key!    
+                if (this._accidental - other._accidental == -2) return 0;
+
+            }
+            return -1;
+        }
+        private readonly int ComparingTwoNotes(Key other)
+        {
+            //          E    follows   F
+            if ((this._note - other._note) == -1)
+            {
+                if (this._accidental - other._accidental == -2 ||
+                    this._accidental - other._accidental == -1 ||
+                    this._accidental - other._accidental == 0) return 1;
+                // when its the same key!
+                if (this._accidental - other._accidental == 1) return 0;
+                //when this.Note always precedes(KEY is on the RIGHT) the other.Note
+                if (this._accidental - other._accidental == 2) return -1;
+            }
+            //          F   precedes   E while comparing only!!! in Program.cs
+            if ((this._note - other._note) == 1)
+            {
+                if (this._accidental - other._accidental == -2 ||
+                    this._accidental - other._accidental == 0) return 1;
+                if (this._accidental - other._accidental == -1) return 0;
+                if (this._accidental - other._accidental == 1) return -1;
+
+            }
+            return -1;
+        }
+        private readonly int ComparingTwoSameNotes(Key other)
+        {
+            //         D  is the same  D
+            if ((this._note - other._note) == 0)
+            {
+                //when this.Note always follows(KEY is on the LEFT) the other.Note
+                if (this._accidental - other._accidental == -1 ||
+                    this._accidental - other._accidental == -2) return 1;
+                //when this.Note always precedes(KEY is on the RIGHT) the other.Note
+                if (this._accidental - other._accidental == 1 ||
+                    this._accidental - other._accidental == 2) return -1;
+                // when its the same key!
+                return 0;
+            }
+            return 0;
+        }
         public override bool Equals(object obj)
         {
-
             return this.CompareTo((Key)obj) == 0;
         }
     }
