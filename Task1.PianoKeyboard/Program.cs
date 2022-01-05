@@ -13,3 +13,5 @@ Console.WriteLine(C.CompareTo(D));
 
 Console.WriteLine(C.Equals(D));
 
+Stack<int> ts = new Stack<int>();
+ts.Push(1);

@@ -10,7 +10,7 @@ namespace Task1.PianoKeyboard.Entities
 {
     internal struct Key : IComparable<Key>
     {
-        private EAccidental _accidental;
+        private readonly EAccidental _accidental;
         private readonly EOctave _octave;
         private readonly ENote _note;
         public Key(ENote note, EAccidental accidental, EOctave octave)
