@@ -190,7 +190,6 @@ namespace Task1.PianoKeyboard.Entities
         }
         public override bool Equals(object obj)
         {
-
             return this.CompareTo((Key)obj) == 0;
         }
     }
