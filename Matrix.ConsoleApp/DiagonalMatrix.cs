@@ -47,25 +47,24 @@ namespace Matrix.ConsoleApp
         {
             get
             {                
-                if (i < 0 && j < 0 || i >= _size && j >= _size)
+                if (i < 0 && j < 0 || i >= _size && j >= _size || i != j)
                 {
                     return 0;
-                }
-                else if (i != j)
-                {
-                    return 0;
-                }
+                }               
                 else if (i == j)
                 { 
                     return _diagonalMatrixArray[i];
                 }
-                else if (i <_size)
-                {
-                    return 0;
-                }
                 else return 0;
             }
-            set => _diagonalMatrixArray[i] = value;
+            set
+            {
+                if (i >= 0 && j >= 0 || i <= _size && j <= _size || i == j)
+                {
+                    _diagonalMatrixArray[i] = value;
+                }
+
+            }
         }
         //passing a a single-dimentional array of params as in ms.docs
         //3.
@@ -82,8 +81,8 @@ namespace Matrix.ConsoleApp
             }
             else
             {
-                _diagonalMatrixArray = diagonalMatrixArray;
                 _size = diagonalMatrixArray.Length;
+                _diagonalMatrixArray = new int[_size];
                 Array.Copy(diagonalMatrixArray, _diagonalMatrixArray, _size);
             }
         }
@@ -116,7 +115,8 @@ namespace Matrix.ConsoleApp
             //according to Jeffrey Richter (CLR via C#)
             var item = obj as DiagonalMatrix;
             // If  objects are different types,  they  can't be equal.  
-            if (this.GetType() != item.GetType())
+
+            if (item == null)
             {
                 return false;
             }
