@@ -8,8 +8,9 @@ namespace Task2.LIFO.Interfaces
 {
     public interface IStack<T>
     {
-        T Push(T item);
+        void Push(T item);
         T Pop();
-        T IsEmpty(T item);
+        bool IsEmpty();
+        T Peek();
     }
 }

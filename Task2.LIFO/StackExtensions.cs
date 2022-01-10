@@ -6,11 +6,17 @@ using System.Threading.Tasks;
 
 namespace Task2.LIFO
 {
-    internal static class StackExtensions<T>
+    internal static class StackExtensions
     {
-        public static void Reverse(T item)
+        public static Stack<T> Reverse<T>(this Stack<T> stack)
         {
+            var reversedStack = new Stack<T>(stack.Count);
 
+            while (stack.Count > 0) // or !stack.isEmpty()
+            {
+                reversedStack.Push(stack.Pop());
+            }
+            return reversedStack;
         }
     }
 }

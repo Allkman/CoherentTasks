@@ -7,24 +7,50 @@ using Task2.LIFO.Interfaces;
 
 namespace Task2.LIFO
 {
-    public class Stack<T> : IStack<T>
+    internal class Stack<T> : IStack<T> 
     {
-        private static int maxSize;
-        private T[] array = new T[maxSize];
-        private static int lastItem;
-        public T IsEmpty(T item)
+        private T[] _stack;
+        private int _lastItemIndex = -1; // top
+        private readonly int _maxSize;
+        //setting Count to 0 (zero)
+        public int Count { get => _lastItemIndex + 1; }
+        public Stack(int maxSize)
         {
-            throw new NotImplementedException();
+           _maxSize = maxSize;            
+            _stack = new T[maxSize];
         }
-
+        public bool IsEmpty()
+        {
+            return _lastItemIndex < 0;
+        }
         public T Pop()
         {
-            throw new NotImplementedException();
+            T item;
+            if (Count > 0)
+            {
+            item = _stack[_lastItemIndex];
+            _lastItemIndex--;
+
+            }
+           else
+                throw new InvalidOperationException("Sequence contains no elements");
+
+            return item;
         }
 
-        public T Push(T item)
+        public void Push(T item)
         {
-            throw new NotImplementedException();
+            if ((_lastItemIndex + 1) == _maxSize)
+            {
+                throw new StackOverflowException();
+            }
+            _lastItemIndex++;
+            _stack[_lastItemIndex] = item;
+        }
+
+        public T Peek()
+        {
+            return _stack[_lastItemIndex];
         }
     }
 }
