@@ -144,7 +144,6 @@ namespace Task1.PianoKeyboard.Entities
                     this._accidental - other._accidental == 2) return -1;
                 // when its the same key!    
                 if (this._accidental - other._accidental == -2) return 0;
-
             }
             return -1;
         }
