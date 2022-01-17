@@ -9,38 +9,30 @@ namespace TMS.ConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("[------------------]");
-            var trainingType = new Training();   
-            var trainings = new List<Training>();
-            Console.WriteLine($"Training has material: {trainingType.IsPractical()}");
+            var trainingTypes = new Training();   
+            Console.WriteLine($"Training has material: {trainingTypes.IsPractical()}");
 
-            //creating practicall lesson to test IsPractical()
             var practicalLesson = new PracticalLesson("Working with variables", "In-progress", null);
             Console.WriteLine("Adding a Practical Lesson");
-            trainingType.Add(practicalLesson);
-            Console.WriteLine($"Training contains only a Practical Lesson: {trainingType.IsPractical()}");
+            trainingTypes.Add(practicalLesson);
+            Console.WriteLine($"Training contains only a Practical Lesson: {trainingTypes.IsPractical()}");
             Console.WriteLine();
             Console.WriteLine("Adding a lecture to the training.");
 
             var lecture1 = new Lecture("C#", "Variables");
-            trainingType.Add(lecture1);
+            trainingTypes.Add(lecture1);
             Console.WriteLine("After adding a Lecture to the Training:");
-            Console.WriteLine($"The answer to if \"Training contains only Practical Lesson\" is: {trainingType.IsPractical()}");
+            Console.WriteLine($"The answer to if \"Training contains only Practical Lesson\" is: {trainingTypes.IsPractical()}");
             Console.WriteLine("[------------------]");
-            trainings.Add(trainingType);
-
-                Console.WriteLine($"The number of current trainings: {trainings.Count}");
-            
-            Console.WriteLine($"Training Description: {trainingType.Desctription = "Programming basics in .NET"}");
            
-            Console.WriteLine();
-            var trainingClone = trainingType.Clone();
-            trainings.Add(trainingClone);
-            Console.WriteLine($"The number of trainings after cloninig: {trainings.Count}");
+            var trainingClone = trainingTypes.Clone();
 
-            Console.WriteLine($"Training Clone Description: {trainingClone.Desctription = "Clonned training."}");
+            foreach (var item in trainingClone.trainingTypes)
+            {
+            Console.WriteLine($"Cloned object in Training: {item}");
 
+            }
             Console.WriteLine();
-            Console.ReadLine();
         }
     }
 }

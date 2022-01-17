@@ -32,30 +32,31 @@ using System.Text;
 /// </summary>
 namespace Matrix.ConsoleApp
 {
-    internal class DiagonalMatrix
+    internal class DiagonalMatrix<T>
     {
-        //1.
-        private int[] _diagonalMatrixArray;
-        //2.
+        private T[] _diagonalMatrixArray;
         public int Size => _size;
-        readonly int _size;
-
-        //the purpose of the indexer
-        //https://www.geeksforgeeks.org/c-sharp-multidimensional-indexers/ 
-        //4. The two indices as a multidimensional indexer
-        public int this[int i, int j]
+        private readonly int _size;
+        public event EventHandler ElementChanged;
+        public T this[int i, int j]
         {
             get
-            {                
-                if (i < 0 && j < 0 || i >= _size && j >= _size || i != j)
+            {
+                //If the index values are less than zero or greater than or equal to the size of the matrix, an IndexOutOfRangeException is thrown.
+                if (i < 0 && j < 0 || i >= _size && j >= _size)
                 {
-                    return 0;
-                }               
+                    throw new IndexOutOfRangeException();
+                }
+                //If i is not equal to j: when reading, the default value for type T is returned
+                if(i != j) 
+                {
+                    return default(T);
+                }
                 else if (i == j)
-                { 
+                {
                     return _diagonalMatrixArray[i];
                 }
-                else return 0;
+                else return default(T);
             }
             set
             {
@@ -63,35 +64,25 @@ namespace Matrix.ConsoleApp
                 {
                     _diagonalMatrixArray[i] = value;
                 }
-
             }
         }
-        //passing a a single-dimentional array of params as in ms.docs
-        //3.
-        //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/arrays/passing-arrays-as-arguments
-        //https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/params
-        //https://www.c-sharpcorner.com/UploadFile/c63ec5/use-params-keyword-in-C-Sharp/
-        public DiagonalMatrix(params int[] diagonalMatrixArray)
+        public DiagonalMatrix(params T[] diagonalMatrixArray)
         {
-            //validating if params element is null
-            //https://stackoverflow.com/questions/6584131/c-sharp-is-it-possible-to-have-null-params @Joshua Rodgers answer
-            if (diagonalMatrixArray == null)
+            if ( diagonalMatrixArray.Length < 0)
             {
-                _size = 0;
+                throw new ArgumentException();
             }
             else
             {
                 _size = diagonalMatrixArray.Length;
-                _diagonalMatrixArray = new int[_size];
+                _diagonalMatrixArray = new T[_size];
                 Array.Copy(diagonalMatrixArray, _diagonalMatrixArray, _size);
             }
         }
-        //5.
         public int Track()
         {
             return _diagonalMatrixArray.Sum();
         }
-        //6.
         public override string ToString()
         {
             var sb = new StringBuilder();
@@ -113,7 +104,7 @@ namespace Matrix.ConsoleApp
         public override bool Equals(object obj)
         {
             //according to Jeffrey Richter (CLR via C#)
-            var item = obj as DiagonalMatrix;
+            var item = obj as DiagonalMatrix<T>;
             // If  objects are different types,  they  can't be equal.  
 
             if (item == null)
