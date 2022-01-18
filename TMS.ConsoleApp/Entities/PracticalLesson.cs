@@ -12,7 +12,7 @@ namespace TMS.ConsoleApp.Entities
         public string? Solution { get; set; }
         public PracticalLesson(string description, string taskCondition, string solution)
         {
-            Desctription = description;
+            Description = description;
             TaskCondition = taskCondition;
             Solution = solution;
         }

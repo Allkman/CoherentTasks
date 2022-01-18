@@ -5,31 +5,32 @@ namespace TMS.ConsoleApp.Entities
 {
     internal class Training : EntityBase
     {
-        public List<EntityBase> trainingTypes = new List<EntityBase>();
-
-        public void Add(EntityBase training)
+        public List<EntityBase> _trainingTypes = new List<EntityBase>();
+        public Training(string description, List<EntityBase> trainingTypes)
         {
-            trainingTypes.Add(training);
+            Description = description;
+
+            _trainingTypes = trainingTypes;
+        }
+        public Training() { }
+        public void Add(EntityBase training) 
+        {
+            _trainingTypes.Add(training);
         }
         public bool IsPractical()
         {
-            for (var item = 0; item < trainingTypes.Count;)
+            for (var item = 0; item < _trainingTypes.Count;)
             {
                 //if any other training type is NOT Lecture return true
                 //if its Lecture DONT execute the return true; go to esle and return false
-                if(!trainingTypes.Any(i => i is Lecture)) return true;
+                if(!_trainingTypes.Any(i => i is Lecture)) return true;
                 else return false;
             }
             return false;
         }
         public Training Clone()
         {
-            //creating a new empty object
-            var trainingClone = new Training();
-            //adding all training types to a newly created objects list(trainingTypes).
-            trainingClone.trainingTypes.AddRange(trainingTypes);
-          
-            return trainingClone;
+            return new Training(this.Description, this._trainingTypes);
         }
     }
 }

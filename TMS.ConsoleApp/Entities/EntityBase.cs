@@ -8,6 +8,8 @@ namespace TMS.ConsoleApp.Entities
 {
     internal class EntityBase
     {
-        public string? Desctription { get; set; } = string.Empty;
+        //if all classes have same prop Description,
+        //I want them to inherit form this base class that will
+        public string? Description { get; set; } = string.Empty;
     }
 }

@@ -14,7 +14,7 @@ namespace TMS.ConsoleApp.Entities
 
         public Lecture(string description, string topic)
         {
-            Desctription = description;
+            Description = description;
             Topic = topic;
 
         }
