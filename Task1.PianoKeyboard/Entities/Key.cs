@@ -4,10 +4,10 @@ namespace Task1.PianoKeyboard.Entities
 {
     internal struct Key : IComparable<Key>
     {
-        private readonly EAccidental _accidental;
-        private readonly EOctave _octave;
-        private readonly ENote _note;
-        public Key(ENote note, EAccidental accidental, EOctave octave)
+        private readonly Accidental _accidental;
+        private readonly Octave _octave;
+        private readonly Note _note;
+        public Key(Note note, Accidental accidental, Octave octave)
         {
             _note = note;
             _accidental = accidental;
@@ -20,12 +20,12 @@ namespace Task1.PianoKeyboard.Entities
         public int CompareTo(Key other)
         {
             //should I implement logic for 2 first Keys from SubContra and 1 last Key from Fifth octaves?
-            if (this._octave == EOctave.SubContra && other._octave == EOctave.SubContra)
+            if (this._octave == Octave.SubContra && other._octave == Octave.SubContra)
             {
                 return ComparingNotesOfSubContraOctave(other);
             }
-            if (this._octave == EOctave.Fifth && this._note == ENote.C &&
-                other._octave == EOctave.Fifth && other._note == ENote.C)
+            if (this._octave == Octave.Fifth && this._note == Note.C &&
+                other._octave == Octave.Fifth && other._note == Note.C)
             {
                 return ComparingNoteOfFifthOctave(other);
             }
@@ -44,9 +44,9 @@ namespace Task1.PianoKeyboard.Entities
         }
         private readonly int ComparingNoteOfFifthOctave(Key other)
         {
-            if (other._octave == EOctave.Fifth && other._note == ENote.C)
+            if (other._octave == Octave.Fifth && other._note == Note.C)
             {
-                if (other._accidental == EAccidental.Sharp)
+                if (other._accidental == Accidental.Sharp)
                 {
                     Console.WriteLine("C8 is 88th Key, it cannot have Sharp Accidental");
                 }
@@ -57,7 +57,7 @@ namespace Task1.PianoKeyboard.Entities
         }
         private readonly int ComparingNotesOfSubContraOctave(Key other)
         {
-            if (this._note == ENote.A && other._note == ENote.B)
+            if (this._note == Note.A && other._note == Note.B)
             {
                 if (this._accidental - other._accidental == 2) return 0;
             }
@@ -67,6 +67,10 @@ namespace Task1.PianoKeyboard.Entities
         }
         public override bool Equals(object obj)
         {
+            if ((obj == null) || !this.GetType().Equals(obj.GetType()))
+            {
+                return false;
+            } 
             return this.CompareTo((Key)obj) == 0;
         }
     }

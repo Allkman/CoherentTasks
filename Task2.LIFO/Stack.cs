@@ -28,13 +28,14 @@ namespace Task2.LIFO
             T item;
             if (Count > 0)
             {
-            item = _stack[_lastItemIndex];
-            _lastItemIndex--;
+                item = _stack[_lastItemIndex];
+                _lastItemIndex--;
 
             }
-           else
+            else
+            {
                 throw new InvalidOperationException("Sequence contains no elements");
-
+            }
             return item;
         }
 
@@ -42,7 +43,7 @@ namespace Task2.LIFO
         {
             if ((_lastItemIndex + 1) == _maxSize)
             {
-                throw new StackOverflowException();
+                throw new InvalidOperationException();
             }
             _lastItemIndex++;
             _stack[_lastItemIndex] = item;

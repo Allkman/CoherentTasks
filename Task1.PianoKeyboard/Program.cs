@@ -1,8 +1,8 @@
 ﻿using Task1.PianoKeyboard.Entities;
 using Task1.PianoKeyboard.Enums;
 
-var C_Sharp = new Key(ENote.C, EAccidental.Sharp, EOctave.First);
-var D_Flat = new Key(ENote.D, EAccidental.Flat, EOctave.First);
+var C_Sharp = new Key(Note.C, Accidental.Sharp, Octave.First);
+var D_Flat = new Key(Note.D, Accidental.Flat, Octave.First);
 
 C_Sharp.ToString();
 D_Flat.ToString();

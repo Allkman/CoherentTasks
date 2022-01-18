@@ -1,6 +1,6 @@
 ﻿namespace Task1.PianoKeyboard.Enums
 {
-    internal enum EAccidental
+    internal enum Accidental
     {
         Flat = -1,
         NoSign = 0,
