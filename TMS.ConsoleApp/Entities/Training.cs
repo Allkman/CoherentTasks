@@ -6,7 +6,6 @@ namespace TMS.ConsoleApp.Entities
     internal class Training : EntityBase
     {
         public List<EntityBase> _trainingTypes = new List<EntityBase>();
-        //A copy ctor for cloning the class where I simply re-initialize the props
         public Training(string description, List<EntityBase> trainingTypes)
         {
             Description = description;
@@ -19,11 +18,24 @@ namespace TMS.ConsoleApp.Entities
         }
         public bool IsPractical()
         {
-            return _trainingTypes.All(x => x is PracticalLesson);
+            for (var item = 0; item < _trainingTypes.Count;)
+            {
+                //I need at first check if the training has any Material and return false
+                //then I add PracticalLesson and return true if training contains only PracticalLesson
+                //then I add Lecture, check if training contains only PractcalLesson and return false.
+                if (!_trainingTypes.Any(i => i is Lecture)) return true;
+                else return false;
+            }
+            return false;
         }
         public Training Clone()
         {
-            return new Training(this.Description, this._trainingTypes);
+            var trainingClone = new Training(this.Description, this._trainingTypes);
+            for (int i = 0; i < _trainingTypes.Count; i++)
+            {
+                trainingClone._trainingTypes[i] = this._trainingTypes[i];
+            }
+            return trainingClone;
         }
     }
 }
