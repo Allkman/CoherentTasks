@@ -21,9 +21,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task2.TrainingManagementSys
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TMS.ConsoleApp", "TMS.ConsoleApp\TMS.ConsoleApp.csproj", "{7DA7D567-555B-4285-9FEF-7EED85BAAF37}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork4", "HomeWork4", "{501A7F87-B60E-4290-AC56-DE0759C35BD1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1.GenericDiagonalMatrix", "Task1.GenericDiagonalMatrix\Task1.GenericDiagonalMatrix.csproj", "{6EE59985-4AD9-4F97-ADB4-E48E1D2CCF56}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,10 +48,6 @@ Global
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6EE59985-4AD9-4F97-ADB4-E48E1D2CCF56}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6EE59985-4AD9-4F97-ADB4-E48E1D2CCF56}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6EE59985-4AD9-4F97-ADB4-E48E1D2CCF56}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6EE59985-4AD9-4F97-ADB4-E48E1D2CCF56}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,7 +60,6 @@ Global
 		{F30D5449-E4F3-466B-8B11-C4FE2BBB58F0} = {C48A5B1E-DF62-4A3B-B8F0-5771A0067F07}
 		{4082BCA5-D7DF-468E-99D3-8473AE25DBA6} = {8B822939-16BE-4BEA-B5E2-267D6F469444}
 		{7DA7D567-555B-4285-9FEF-7EED85BAAF37} = {4082BCA5-D7DF-468E-99D3-8473AE25DBA6}
-		{6EE59985-4AD9-4F97-ADB4-E48E1D2CCF56} = {501A7F87-B60E-4290-AC56-DE0759C35BD1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0DD6C7D-EFC6-44B1-967E-0EBF104C2CE1}
