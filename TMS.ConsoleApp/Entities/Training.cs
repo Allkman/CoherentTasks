@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace TMS.ConsoleApp.Entities
@@ -28,12 +29,13 @@ namespace TMS.ConsoleApp.Entities
             }
             return false;
         }
-        public Training Clone()
+
+        public override object Clone()
         {
             var trainingClone = new Training(this.Description, this._trainingTypes);
             for (int i = 0; i < _trainingTypes.Count; i++)
             {
-                trainingClone._trainingTypes[i] = this._trainingTypes[i];
+                trainingClone._trainingTypes[i] = this._trainingTypes[i].Clone() as EntityBase;
             }
             return trainingClone;
         }

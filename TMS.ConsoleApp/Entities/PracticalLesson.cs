@@ -16,5 +16,10 @@ namespace TMS.ConsoleApp.Entities
             TaskCondition = taskCondition;
             Solution = solution;
         }
+
+        public override object Clone()
+        {
+            return new PracticalLesson(Description, TaskCondition, Solution);
+        }
     }
 }

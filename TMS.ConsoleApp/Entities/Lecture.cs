@@ -18,5 +18,10 @@ namespace TMS.ConsoleApp.Entities
             Topic = topic;
 
         }
+
+        public override object Clone()
+        {
+            return new Lecture(Description, Topic);
+        }
     }
 }
