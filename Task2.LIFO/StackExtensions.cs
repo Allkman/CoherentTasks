@@ -3,20 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Task2.LIFO.Interfaces;
 
 namespace Task2.LIFO
 {
     internal static class StackExtensions
     {
-        public static Stack<T> Reverse<T>(this Stack<T> stack)
+        public static IStack<T> Reverse<T>(IStack<T> stack)
         {
-            var reversedStack = new Stack<T>(stack.Count);
+            IStack<T> reverseStack = new Stack<T>();
 
-            while (stack.Count > 0) // or !stack.isEmpty()
+            while (!stack.IsEmpty())
             {
-                reversedStack.Push(stack.Pop());
+                reverseStack.Push(stack.Pop());
             }
-            return reversedStack;
+            return reverseStack;
         }
     }
 }

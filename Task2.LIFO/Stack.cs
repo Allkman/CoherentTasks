@@ -19,6 +19,10 @@ namespace Task2.LIFO
            _maxSize = maxSize;            
             _stack = new T[maxSize];
         }
+        public Stack()
+        {
+
+        }
         public bool IsEmpty()
         {
             return _lastItemIndex < 0;
