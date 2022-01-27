@@ -8,9 +8,13 @@
             OldValue = oldValue;
             NewValue = newValue;
         }
+        //for MatrixTracker.cs
+        public ElementChangedEventArgs() 
+        {
+
+        }
         public int Index { get; set; }
         public T? OldValue { get; set; }
         public T? NewValue { get; set; }
-
     }
 }

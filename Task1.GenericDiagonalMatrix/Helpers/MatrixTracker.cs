@@ -3,20 +3,21 @@
     internal class MatrixTracker<T>
     {
         private DiagonalMatrix<T> _matrix;
-        public MatrixTracker(DiagonalMatrix<T> squareDiagonalMatrix)
-        {
-            _matrix = squareDiagonalMatrix;
-            squareDiagonalMatrix.ElementChanged += Undo;
+        //creating new ojb here to store its values that are coming from Event e
+        private ElementChangedEventArgs<T> _eventArgs = new ElementChangedEventArgs<T>();
 
-        }
-        public void Undo(object? sender, ElementChangedEventArgs<T> e)
+        public MatrixTracker(DiagonalMatrix<T> diagonalMatrix)
         {
-            if (sender != null)
-            {
-                //If i don`t unsubscribe here, before setting oldValue, I`ll get StackOverflow ex...
-                _matrix.ElementChanged -= Undo;
-                _matrix[e.Index, e.Index] = e.OldValue;
-            }
+            _matrix = diagonalMatrix;
+            diagonalMatrix.ElementChanged += SquareDiagonalMatrix_ElementChanged;
+        }
+        private void SquareDiagonalMatrix_ElementChanged(object? sender, ElementChangedEventArgs<T> e)
+        {
+            _eventArgs = e;
+        }
+        public void Undo()
+        {
+            _matrix[_eventArgs.Index, _eventArgs.Index] = _eventArgs.OldValue;
         }
     }
 }

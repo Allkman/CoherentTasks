@@ -7,18 +7,15 @@ try
 {
     //firstMatrix
     var firstMatrix = new DiagonalMatrix<int>(3);
-    var index = 1;
     firstMatrix[0, 0] = 1;
-    var oldValue = firstMatrix[1, 1] = 4;
+    firstMatrix[1, 1] = 4;
     firstMatrix[2, 2] = 1;
     Console.WriteLine(firstMatrix.ToString());
-    var newValue = firstMatrix[1, 1] = 6;
     Console.WriteLine();
 
     //Matrix Tracker
     var firstMatrixTracker = new MatrixTracker<int>(firstMatrix);
-    ElementChangedEventArgs<int> eventArgs = new ElementChangedEventArgs<int>(index, oldValue, newValue);
-    firstMatrixTracker.Undo(firstMatrix, eventArgs);
+    firstMatrixTracker.Undo();
     Console.WriteLine(firstMatrix.ToString());
 
     //secondMatrix

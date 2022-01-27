@@ -10,9 +10,6 @@ namespace Task1.GenericDiagonalMatrix
         public event EventHandler<ElementChangedEventArgs<T>> ElementChanged;
         private T?[] MatrixArray;
         private readonly int _size;
-        private int previousIndexOfTypeT = 0;
-        private T? previousValue;
-
         public T? this[int i, int j]
         {
             get
@@ -35,28 +32,16 @@ namespace Task1.GenericDiagonalMatrix
             {
                 if (i >= 0 && j >= 0 || i <= _size && j <= _size || i == j)
                 {
-                    previousIndexOfTypeT = i;
-                    previousValue = MatrixArray[i];
-                    MatrixArray[i] = value;
-                    OnElementChanged(new ElementChangedEventArgs<T>(
-                                                                    previousIndexOfTypeT,
-                                                                    previousValue,
-                                                                    value));
+                    T? previousValue = MatrixArray[i];
+                    MatrixArray[i] = value; //newValue
+                    OnElementChanged(new ElementChangedEventArgs<T>(i, previousValue, value));
                 }
             }
         }
         public DiagonalMatrix(int size)
         {
-            _size = size;
-            if (size < 0)
-            {
-                throw new ArgumentException();
-            }
-            else
-            {
-                MatrixArray = new T[size];
-            }
-            //_size = size >= 0 ? size : throw new ArgumentException();
+            _size = size >= 0 ? size : throw new ArgumentException();
+            MatrixArray = new T[size];
         }
         public override string ToString()
         {
