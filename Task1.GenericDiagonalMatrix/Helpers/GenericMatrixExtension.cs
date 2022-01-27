@@ -2,9 +2,9 @@
 {
     internal static class GenericMatrixExtension
     {
-        public static SquareDiagonalMatrix<T> Add<T>(
-            this SquareDiagonalMatrix<T> first,
-            SquareDiagonalMatrix<T> second,
+        public static DiagonalMatrix<T> Add<T>(
+            this DiagonalMatrix<T> first,
+            DiagonalMatrix<T> second,
             Func<T?, T?, T> AdditionOfT)
         {
             var newArrayLength = 0;
@@ -16,15 +16,12 @@
             {
                 newArrayLength = second.Size;
             }
-            T[] newArray = new T[newArrayLength];
-
-            for (int i = 0; i < newArray.Length; i++)
+            var tempMatrix = new DiagonalMatrix<T>(newArrayLength);
+            for (int i = 0; i < newArrayLength; i++)
             {
-                newArray[i] = AdditionOfT.Invoke(first[i,i], second[i,i]);
+                tempMatrix[i,i] = AdditionOfT.Invoke(first[i,i], second[i,i]);
             }
-            return new SquareDiagonalMatrix<T>(newArray);
-        }
-
-        
+            return tempMatrix;
+        }        
     }
 }

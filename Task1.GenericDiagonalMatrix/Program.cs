@@ -1,53 +1,44 @@
 ﻿using Task1.GenericDiagonalMatrix;
-
-
-int[] firstArray = new int[] { 4, 6, 7 };
-int[] secondArray = new int[] { 2, 1, 2 };
-Console.WriteLine("firstArray:");
-foreach (var item in firstArray)
-{
-    Console.Write($"{item}, ");
-}
-Console.WriteLine();
-Console.WriteLine("secondArray:");
-foreach (var item in secondArray)
-{
-    Console.Write($"{item}, ");
-}
-Console.WriteLine();
-var topIndex = firstArray.Length-1; // last index
-var oldValue = firstArray[topIndex];
-var newValue = firstArray[topIndex] = 99;
-var intEventArgs = new ElementChangedEventArgs<int>(topIndex, oldValue, newValue);
-
-Console.WriteLine("Changing the element of firstArray:");
-foreach (var item in firstArray)
-{
-    Console.Write($"{item}, ");
-}
-Console.WriteLine();
-Console.WriteLine("Undoing the changes:");
-var firstMatrix = new SquareDiagonalMatrix<int>(firstArray);
-var firstMatrixTracker = new MatrixTracker<int>(firstMatrix);
-
-//TODO call correct Undo(); impelementation...
-
-//firstMatrixTracker.Undo(firstMatrix, intEventArgs);
-Console.WriteLine();
-//Console.WriteLine("Printing Diagonal Square Matrix");
-//Console.WriteLine(firstMatrix.ToString());
-
-var secondMatrix = new SquareDiagonalMatrix<int>(secondArray);
-
-Console.WriteLine(secondMatrix.ToString());
 static int AdditionOfT(int first, int second)
 {
-    var d1 = Convert.ToDouble(first);
-    var d2 = Convert.ToDouble(second);
-    return (int)(dynamic)(d1 + d2);
+    return first + second;
 }
-Console.WriteLine("The result of adding two matrices: (without Undo() implementation");
-var combinedMatrix = GenericMatrixExtension.Add(firstMatrix, secondMatrix, AdditionOfT);
-Console.WriteLine(combinedMatrix.ToString());
+try
+{
+    //firstMatrix
+    var firstMatrix = new DiagonalMatrix<int>(3);
+    var index = 1;
+    firstMatrix[0, 0] = 1;
+    var oldValue = firstMatrix[1, 1] = 4;
+    firstMatrix[2, 2] = 1;
+    Console.WriteLine(firstMatrix.ToString());
+    var newValue = firstMatrix[1, 1] = 6;
+    Console.WriteLine();
 
-Console.ReadLine();
+    //Matrix Tracker
+    var firstMatrixTracker = new MatrixTracker<int>(firstMatrix);
+    ElementChangedEventArgs<int> eventArgs = new ElementChangedEventArgs<int>(index, oldValue, newValue);
+    firstMatrixTracker.Undo(firstMatrix, eventArgs);
+    Console.WriteLine(firstMatrix.ToString());
+
+    //secondMatrix
+    var secondMatrix = new DiagonalMatrix<int>(3);
+    secondMatrix[0, 0] = 2;
+    secondMatrix[1, 1] = 3;
+    secondMatrix[2, 2] = 2;
+    Console.WriteLine(secondMatrix.ToString());
+    Console.WriteLine();
+
+    //Matrix Extension
+    Console.WriteLine("The result of adding two matrices:");
+    Console.WriteLine(firstMatrix.Add(secondMatrix, AdditionOfT).ToString());
+}
+catch (ArgumentException)
+{
+    Console.WriteLine($"Matrix cannot be set to negative size.");
+}
+catch (IndexOutOfRangeException)
+{
+    Console.WriteLine("Matix index was out of bounds of an array.");
+}
+Console.ReadKey();

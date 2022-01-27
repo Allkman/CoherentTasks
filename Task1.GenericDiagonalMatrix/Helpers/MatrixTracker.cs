@@ -2,8 +2,10 @@
 {
     internal class MatrixTracker<T>
     {
-        public MatrixTracker(SquareDiagonalMatrix<T> squareDiagonalMatrix)
+        private DiagonalMatrix<T> _matrix;
+        public MatrixTracker(DiagonalMatrix<T> squareDiagonalMatrix)
         {
+            _matrix = squareDiagonalMatrix;
             squareDiagonalMatrix.ElementChanged += Undo;
 
         }
@@ -11,7 +13,8 @@
         {
             if (sender != null)
             {
-                // TODO implement logic for Undo();
+                _matrix.ElementChanged -= Undo;
+                _matrix[e.Index, e.Index] = e.OldValue;
             }
         }
     }

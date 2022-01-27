@@ -8,7 +8,6 @@
             OldValue = oldValue;
             NewValue = newValue;
         }
-
         public int Index { get; set; }
         public T? OldValue { get; set; }
         public T? NewValue { get; set; }

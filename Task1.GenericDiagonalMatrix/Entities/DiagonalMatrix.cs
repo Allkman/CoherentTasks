@@ -4,13 +4,15 @@ namespace Task1.GenericDiagonalMatrix
 {
     //Followed docs.ms Guidlines @
     //https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/events/how-to-publish-events-that-conform-to-net-framework-guidelines
-    internal class SquareDiagonalMatrix<T>
+    internal class DiagonalMatrix<T>
     {
-        public T?[] MatrixArray;
         public int Size => _size;
-        readonly int _size;
-
         public event EventHandler<ElementChangedEventArgs<T>> ElementChanged;
+        private T?[] MatrixArray;
+        private readonly int _size;
+        private int previousIndexOfTypeT = 0;
+        private T? previousValue;
+
         public T? this[int i, int j]
         {
             get
@@ -33,23 +35,28 @@ namespace Task1.GenericDiagonalMatrix
             {
                 if (i >= 0 && j >= 0 || i <= _size && j <= _size || i == j)
                 {
+                    previousIndexOfTypeT = i;
+                    previousValue = MatrixArray[i];
                     MatrixArray[i] = value;
+                    OnElementChanged(new ElementChangedEventArgs<T>(
+                                                                    previousIndexOfTypeT,
+                                                                    previousValue,
+                                                                    value));
                 }
-
             }
         }
-        public SquareDiagonalMatrix(params T[] squareDiagonalMatrix)
+        public DiagonalMatrix(int size)
         {
-            if (squareDiagonalMatrix.Length < 0)
+            _size = size;
+            if (size < 0)
             {
                 throw new ArgumentException();
             }
             else
             {
-                _size = squareDiagonalMatrix.Length;
-                MatrixArray = new T[_size];
-                Array.Copy(squareDiagonalMatrix, MatrixArray, _size);
+                MatrixArray = new T[size];
             }
+            //_size = size >= 0 ? size : throw new ArgumentException();
         }
         public override string ToString()
         {
@@ -58,26 +65,22 @@ namespace Task1.GenericDiagonalMatrix
             {
                 return string.Empty;
             }
-            //a loop for creating a matrix, iterating through rows and columns:
-            for (int row = 0; row < _size; row++)
+            for (int row = 0; row < MatrixArray.Length; row++)
             {
                 sb.AppendLine();
-                for (int column = 0; column < _size; column++)
+                for (int column = 0; column < MatrixArray.Length; column++)
                 {
                     sb.Append(this[row, column]);
                 }
             }
             return sb.ToString();
         }
-        // Wrap event invocations inside a protected virtual method
-        // to allow derived classes to override the event invocation behavior
         protected virtual void OnElementChanged(ElementChangedEventArgs<T> e)
         {
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < MatrixArray.Length; i++)
             {
                 if (!Equals(e.OldValue, e.NewValue))
                 {
-                    // Call to invoke the event.
                     ElementChanged?.Invoke(this, e);
                 }
             }
