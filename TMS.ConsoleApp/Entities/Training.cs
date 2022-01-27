@@ -5,23 +5,25 @@ namespace TMS.ConsoleApp.Entities
 {
     internal class Training : EntityBase
     {
-        public List<EntityBase> trainingTypes = new List<EntityBase>();
-
-        public void Add(EntityBase training)
+        public List<EntityBase> _trainingTypes = new List<EntityBase>();
+        //A copy ctor for cloning the class where I simply re-initialize the props
+        public Training(string description, List<EntityBase> trainingTypes)
         {
-            trainingTypes.Add(training);
+            Description = description;
+            _trainingTypes = trainingTypes;
         }
-
+        public Training() { }//empty ctor for Training obj creation
+        public void Add(EntityBase training) 
+        {
+            _trainingTypes.Add(training);
+        }
         public bool IsPractical()
         {
-            return trainingTypes.All(x => x is PracticalLesson);            
+            return _trainingTypes.All(x => x is PracticalLesson);
         }
         public Training Clone()
         {
-            var trainingClone = new Training();
-            trainingClone.trainingTypes.AddRange(this.trainingTypes);
-          
-            return trainingClone;
+            return new Training(this.Description, this._trainingTypes);
         }
     }
 }

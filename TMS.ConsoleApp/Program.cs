@@ -9,38 +9,29 @@ namespace TMS.ConsoleApp
         static void Main(string[] args)
         {
             Console.WriteLine("[------------------]");
-            var trainingType = new Training();   
-            var trainings = new List<Training>();
-            Console.WriteLine($"Training has material: {trainingType.IsPractical()}");
+            var springTraining = new Training();
+            springTraining.Description = "Spring C# Training";
 
-            //creating practicall lesson to test IsPractical()
+            Console.WriteLine($"Training has material: {springTraining.IsPractical()}"); // false
+
             var practicalLesson = new PracticalLesson("Working with variables", "In-progress", null);
             Console.WriteLine("Adding a Practical Lesson");
-            trainingType.Add(practicalLesson);
-            Console.WriteLine($"Training contains only a Practical Lesson: {trainingType.IsPractical()}");
+            springTraining.Add(practicalLesson);
+
+            Console.WriteLine($"Training contains only a Practical Lesson: {springTraining.IsPractical()}"); // true
             Console.WriteLine();
             Console.WriteLine("Adding a lecture to the training.");
 
             var lecture1 = new Lecture("C#", "Variables");
-            trainingType.Add(lecture1);
+            springTraining.Add(lecture1);
+
             Console.WriteLine("After adding a Lecture to the Training:");
-            Console.WriteLine($"The answer to if \"Training contains only Practical Lesson\" is: {trainingType.IsPractical()}");
+            Console.WriteLine($"The answer to if \"Training contains only Practical Lesson\" is: {springTraining.IsPractical()}"); // false
             Console.WriteLine("[------------------]");
-            trainings.Add(trainingType);
 
-                Console.WriteLine($"The number of current trainings: {trainings.Count}");
-            
-            Console.WriteLine($"Training Description: {trainingType.Desctription = "Programming basics in .NET"}");
-           
+            var springTrainingClone = springTraining.Clone();
+            Console.WriteLine($"Clonned Spring Training Description: {springTrainingClone.Description}");
             Console.WriteLine();
-            var trainingClone = trainingType.Clone();
-            trainings.Add(trainingClone);
-            Console.WriteLine($"The number of trainings after cloninig: {trainings.Count}");
-
-            Console.WriteLine($"Training Clone Description: {trainingClone.Desctription = "Clonned training."}");
-
-            Console.WriteLine();
-            Console.ReadLine();
         }
     }
 }
