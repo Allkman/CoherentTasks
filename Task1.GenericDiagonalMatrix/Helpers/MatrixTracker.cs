@@ -13,6 +13,7 @@
         {
             if (sender != null)
             {
+                //If i don`t unsubscribe here, before setting oldValue, I`ll get StackOverflow ex...
                 _matrix.ElementChanged -= Undo;
                 _matrix[e.Index, e.Index] = e.OldValue;
             }
