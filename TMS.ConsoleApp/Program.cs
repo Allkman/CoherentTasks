@@ -30,7 +30,7 @@ namespace TMS.ConsoleApp
             Console.WriteLine("[------------------]");
 
             var springTrainingClone = springTraining.Clone();
-            Console.WriteLine($"Clonned Spring Training Description: {springTrainingClone.Description}");
+            Console.WriteLine($"Clonned Spring Training Description: {springTrainingClone}");
             Console.WriteLine();
         }
     }
