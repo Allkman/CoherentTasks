@@ -11,7 +11,14 @@ namespace TMS.ConsoleApp.Entities
         //if all classes have same prop Description,
         //I want them to inherit form this base class that will
         public string? Description { get; set; } = string.Empty;
-        //virtual
+        protected EntityBase(string description)
+        {
+            Description = description;
+        }
+        public EntityBase()
+        {
+
+        }
         public abstract object Clone();
    
     }
