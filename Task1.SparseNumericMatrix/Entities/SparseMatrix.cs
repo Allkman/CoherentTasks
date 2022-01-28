@@ -35,7 +35,7 @@ namespace Task1.SparseNumericMatrix.Entities
                 _cells[key] = value;
             }
         }
-        public SparseMatrix(int row, int column, int indexer)
+        public SparseMatrix(int row, int column)
         {
             if (row > 0 && column > 0)
             {
