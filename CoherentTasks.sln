@@ -15,7 +15,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "HomeWork5", "HomeWork5", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1.SparseNumericMatrix", "Task1.SparseNumericMatrix\Task1.SparseNumericMatrix.csproj", "{B9E6FADB-DBD9-41FB-92F3-5BE4D10977BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task2.BookISBN", "Task2.BookISBN\Task2.BookISBN.csproj", "{DD52BE13-3987-47E5-9BF9-322E797FDF87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task2.BookISBN", "Task2.BookISBN\Task2.BookISBN.csproj", "{DD52BE13-3987-47E5-9BF9-322E797FDF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task3.EmployeeVacation", "Task3.EmployeeVacation\Task3.EmployeeVacation.csproj", "{DC1B6F09-FD67-4F4B-9A1E-7066420D746F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -43,6 +45,10 @@ Global
 		{DD52BE13-3987-47E5-9BF9-322E797FDF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD52BE13-3987-47E5-9BF9-322E797FDF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD52BE13-3987-47E5-9BF9-322E797FDF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DC1B6F09-FD67-4F4B-9A1E-7066420D746F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DC1B6F09-FD67-4F4B-9A1E-7066420D746F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DC1B6F09-FD67-4F4B-9A1E-7066420D746F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DC1B6F09-FD67-4F4B-9A1E-7066420D746F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,6 +59,7 @@ Global
 		{D43CF93F-5520-43CA-855C-B8CA082BDA14} = {643AA6FC-3CD9-49FB-BD5A-8441CAF47699}
 		{B9E6FADB-DBD9-41FB-92F3-5BE4D10977BB} = {B291A723-9981-41E9-AFEF-24E107F49474}
 		{DD52BE13-3987-47E5-9BF9-322E797FDF87} = {B291A723-9981-41E9-AFEF-24E107F49474}
+		{DC1B6F09-FD67-4F4B-9A1E-7066420D746F} = {B291A723-9981-41E9-AFEF-24E107F49474}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {B0DD6C7D-EFC6-44B1-967E-0EBF104C2CE1}

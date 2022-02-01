@@ -27,10 +27,10 @@ namespace Task1.SparseNumericMatrix.Entities
             {
                 var key = i * ColumnCount + j;
                 //to save memory i remove all zero values
-                if (value == 0)
-                {
-                    _cells.Remove(key, out value);
-                }
+                //if (value == 0)
+                //{
+                //    _cells.Remove(key, out value);
+                //}
                 _cells[key] = value;
             }
         }
@@ -52,8 +52,10 @@ namespace Task1.SparseNumericMatrix.Entities
             //var cell = _cells.Keys.GetEnumerator();
             //while (cell.MoveNext())
             //    yield return (cell.Current, cell.Current, cell.Current);
+
             _cells.GetEnumerator();
-            return _cells.Select(x => (x.Key, x.Key, x.Value));
+
+            return _cells.Select(x => (x.Key, x.Key, x.Value)).ToList();
         }
 
         public IEnumerator<int> GetEnumerator()
