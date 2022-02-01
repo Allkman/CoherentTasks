@@ -38,4 +38,5 @@ catch (IndexOutOfRangeException)
 {
     Console.WriteLine("Matix index was out of bounds of an array.");
 }
+
 Console.ReadKey();
