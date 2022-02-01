@@ -32,13 +32,12 @@ using System.Text;
 /// </summary>
 namespace Matrix.ConsoleApp
 {
-    internal class DiagonalMatrix<T>
+    internal class DiagonalMatrix
     {
-        private T[] _diagonalMatrixArray;
+        private int[] _diagonalMatrixArray;
         public int Size => _size;
         private readonly int _size;
-        public event EventHandler ElementChanged;
-        public T this[int i, int j]
+        public int this[int i, int j]
         {
             get
             {
@@ -50,13 +49,13 @@ namespace Matrix.ConsoleApp
                 //If i is not equal to j: when reading, the default value for type T is returned
                 if(i != j) 
                 {
-                    return default(T);
+                    return 0;
                 }
                 else if (i == j)
                 {
                     return _diagonalMatrixArray[i];
                 }
-                else return default(T);
+                else return 0;
             }
             set
             {
@@ -66,7 +65,7 @@ namespace Matrix.ConsoleApp
                 }
             }
         }
-        public DiagonalMatrix(params T[] diagonalMatrixArray)
+        public DiagonalMatrix(params int[] diagonalMatrixArray)
         {
             if ( diagonalMatrixArray.Length < 0)
             {
@@ -75,7 +74,7 @@ namespace Matrix.ConsoleApp
             else
             {
                 _size = diagonalMatrixArray.Length;
-                _diagonalMatrixArray = new T[_size];
+                _diagonalMatrixArray = new int[_size];
                 Array.Copy(diagonalMatrixArray, _diagonalMatrixArray, _size);
             }
         }
@@ -104,7 +103,7 @@ namespace Matrix.ConsoleApp
         public override bool Equals(object obj)
         {
             //according to Jeffrey Richter (CLR via C#)
-            var item = obj as DiagonalMatrix<T>;
+            var item = obj as DiagonalMatrix;
             // If  objects are different types,  they  can't be equal.  
 
             if (item == null)
