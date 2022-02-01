@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections;
-using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
@@ -9,28 +8,28 @@ using System.Threading.Tasks;
 
 namespace Task1.SparseNumericMatrix.Entities
 {
-    //https://docs.microsoft.com/en-us/dotnet/standard/collections/thread-safe/
     internal class SparseMatrix : IEnumerable<int> 
     {
+        
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
-        //putting cells into a dictionary https://docs.microsoft.com/en-us/dotnet/api/system.collections.concurrent.concurrentdictionary-2?view=net-6.0
-        private ConcurrentDictionary<Tuple<int, int>, int> _cells = new ConcurrentDictionary<Tuple<int, int>, int>();
-        public int this[int row, int column]
+        private Dictionary<int, int> _cells = new Dictionary<int, int>();
+        public int this[int i, int j]
         {
             get
             {
-                var key = new Tuple<int, int>(row, column);
+                var key = i * ColumnCount + j;
                 int value;
                 _cells.TryGetValue(key, out value);
                 return value;
             }
             set
             {
-                var key = new Tuple<int, int>(row, column);
+                var key = i * ColumnCount + j;
+                //to save memory i remove all zero values
                 if (value == 0)
                 {
-                    _cells.TryRemove(key, out value);
+                    _cells.Remove(key, out value);
                 }
                 _cells[key] = value;
             }
@@ -48,49 +47,47 @@ namespace Task1.SparseNumericMatrix.Entities
                 throw new ArgumentOutOfRangeException();
             }
         }
-        public IEnumerable<(int, int, int)> GetNoZeroElements(int col, int row, int value)
+        public IEnumerable<(int, int, int)> GetNoZeroElements()
         {
-  
-            return _cells.Where(x => x.Key.Item1 == col, x.Key.Item2 == row, x.Value == value);
-
-        }
-
-        public int GetCount(int x)
-        {
-            x = _cells.Count;
-            return x; 
-        }
-        public override string ToString()
-        {
-            var sb = new StringBuilder();
-            if (Size == 0)
-            {
-                return string.Empty;
-            }
-            //a loop for creating a matrix, iterating through rows and columns:
-            for (int row = 0; row < _size; row++)
-            {
-                sb.AppendLine();
-                for (int column = 0; column < _size; column++)
-                {
-                    sb.Append(this[row, column]);
-                }
-            }
-            return sb.ToString();
+            //var cell = _cells.Keys.GetEnumerator();
+            //while (cell.MoveNext())
+            //    yield return (cell.Current, cell.Current, cell.Current);
+            _cells.GetEnumerator();
+            return _cells.Select(x => (x.Key, x.Key, x.Value));
         }
 
         public IEnumerator<int> GetEnumerator()
         {
             foreach (var item in _cells)
             {
-               
-                item.Key.
+                yield return _cells.Select(x => x.Key).First();
             }
-        }
 
+        }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return this.GetEnumerator();
+        }
+        public int GetCount(int x)
+        {
+            return x; 
+        }
+        public override string ToString()
+        {
+            var sb = new StringBuilder();
+            if (RowCount == 0 || ColumnCount == 0)
+            {
+                return string.Empty;
+            }
+            for (int row = 0; row < RowCount; row++)
+            {
+                sb.AppendLine();
+                for (int column = 0; column < ColumnCount; column++)
+                {
+                    sb.Append(this[row, column]);
+                }
+            }
+            return sb.ToString();
         }
     }
 }
