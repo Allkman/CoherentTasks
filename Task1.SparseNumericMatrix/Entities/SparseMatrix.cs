@@ -13,19 +13,19 @@ namespace Task1.SparseNumericMatrix.Entities
         
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
-        private Dictionary<int, int> _cells = new Dictionary<int, int>();
+        private Dictionary<string, int> _cells = new Dictionary<string, int>();
         public int this[int i, int j]
         {
             get
             {
-                var key = i * ColumnCount + j;
+                var key = (i * ColumnCount + j).ToString();
                 int value;
                 _cells.TryGetValue(key, out value);
                 return value;
             }
             set
             {
-                var key = i * ColumnCount + j;
+                var key = (i * ColumnCount + j).ToString();
                 //to save memory i remove all zero values
                 //if (value == 0)
                 //{

@@ -13,7 +13,7 @@ namespace Task2.Entities.BookISBN
         private string _title;
         public DateTime? PublicationDate { get; set; }
         public List<Author> Authors { get; set; }
-
+        public string ISBN { get; set; }
         public Book(string title)
         {
             _title = title;
