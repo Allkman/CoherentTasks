@@ -30,6 +30,10 @@ namespace Task1.GenericDiagonalMatrix
             }
             set
             {
+                if (i < 0 && j < 0 || i >= _size && j >= _size)
+                {
+                    throw new IndexOutOfRangeException();
+                }
                 if (i >= 0 && j >= 0 || i <= _size && j <= _size || i == j)
                 {
                     T? previousValue = MatrixArray[i];
@@ -62,13 +66,7 @@ namespace Task1.GenericDiagonalMatrix
         }
         protected virtual void OnElementChanged(ElementChangedEventArgs<T> e)
         {
-            for (int i = 0; i < MatrixArray.Length; i++)
-            {
-                if (!Equals(e.OldValue, e.NewValue))
-                {
-                    ElementChanged?.Invoke(this, e);
-                }
-            }
+            ElementChanged?.Invoke(this, e);
         }
     }
 }
