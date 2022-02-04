@@ -1,36 +1,35 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
+﻿using System.Collections;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Task1.SparseNumericMatrix.Entities
 {
     internal class SparseMatrix : IEnumerable<int> 
     {
-        
+        private struct Key
+        {
+            public int RowIndex { get; set; }
+            public int ColumnIndex { get; set; }
+            public Key(int rowIndex, int columnIndex)
+            {
+                RowIndex = rowIndex;
+                ColumnIndex = columnIndex;
+            }
+        }
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
-        private Dictionary<string, int> _cells = new Dictionary<string, int>();
+        private int _size => RowCount * ColumnCount;
+        private Dictionary<Key, int> _cells = new Dictionary<Key, int>();
         public int this[int i, int j]
         {
             get
             {
-                var key = (i * ColumnCount + j).ToString();
+                var key = new Key(i, j);
                 int value;
-                _cells.TryGetValue(key, out value);
-                return value;
+                return _cells.TryGetValue(key, out value) ? value : default;
             }
             set
             {
-                var key = (i * ColumnCount + j).ToString();
-                //to save memory i remove all zero values
-                //if (value == 0)
-                //{
-                //    _cells.Remove(key, out value);
-                //}
+                var key = new Key(i, j);
                 _cells[key] = value;
             }
         }
@@ -38,9 +37,8 @@ namespace Task1.SparseNumericMatrix.Entities
         {
             if (row > 0 && column > 0)
             {
-            RowCount = row;
-            ColumnCount = column;
-
+                RowCount = row;
+                ColumnCount = column;
             }
             else
             {
@@ -49,30 +47,40 @@ namespace Task1.SparseNumericMatrix.Entities
         }
         public IEnumerable<(int, int, int)> GetNoZeroElements()
         {
-            //var cell = _cells.Keys.GetEnumerator();
-            //while (cell.MoveNext())
-            //    yield return (cell.Current, cell.Current, cell.Current);
+            //just check element and if it is not zero, add it to the list
+            List<(int, int, int)> tupleList = new List<(int, int, int)>();
 
-            _cells.GetEnumerator();
-
-            return _cells.Select(x => (x.Key, x.Key, x.Value)).ToList();
+            foreach (var cell in _cells)
+            {
+                tupleList.Add((cell.Key.RowIndex, cell.Key.ColumnIndex, cell.Value));
+            }
+            return tupleList.OrderBy(x => x.Item2).ThenBy(y => y.Item1);
         }
-
         public IEnumerator<int> GetEnumerator()
         {
-            foreach (var item in _cells)
+            for (int i = 0; i < _size; i++)
             {
-                yield return _cells.Select(x => x.Key).First();
+                for (int j = 0; j < _size; j++)
+                {
+                    yield return this[i, j];
+                }
             }
-
         }
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return this.GetEnumerator();
+            return GetEnumerator();
         }
         public int GetCount(int x)
         {
-            return x; 
+            int count = 0;
+            foreach (var item in this)
+            {
+                if (x == item)
+                {
+                    count++;
+                }
+            }
+            return count; 
         }
         public override string ToString()
         {
@@ -81,12 +89,12 @@ namespace Task1.SparseNumericMatrix.Entities
             {
                 return string.Empty;
             }
-            for (int row = 0; row < RowCount; row++)
+            for (int i = 0; i < RowCount; i++)
             {
                 sb.AppendLine();
-                for (int column = 0; column < ColumnCount; column++)
+                for (int j = 0; j < ColumnCount; j++)
                 {
-                    sb.Append(this[row, column]);
+                    sb.Append(this[i, j]);
                 }
             }
             return sb.ToString();
