@@ -1,2 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Task3.EmployeeVacation;
+
+Employee employee = new Developer("Tom", "Anderson", 240087);
+Console.WriteLine(employee.EmployeeId);
