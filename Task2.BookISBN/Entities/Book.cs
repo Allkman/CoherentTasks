@@ -10,7 +10,7 @@ namespace Task2.Entities.BookISBN
 {
     internal class Book
     {
-        private string? _title;
+        private string _title;
         private string _publicationDate;
         private List<Author> Authors;
         private string? _ISBN;
@@ -27,10 +27,16 @@ namespace Task2.Entities.BookISBN
                     throw new NullReferenceException();
                 }
             }
+            set
+            {
+                if (IsValideISBN(isbn))
+                {
+                    _ISBN = isbn;
+                }
+            }
         }
-        public Book(string isbn, string title, string date)
+        public Book(string title, string date)
         {
-            _ISBN = isbn;
             _title = title;
             Authors = new List<Author>();
             _publicationDate = date;

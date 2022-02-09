@@ -11,14 +11,17 @@ namespace Task2.BookISBN.Models
 {
     internal class CatalogService
     {
-        public List<Book> Books { get; set; }
+        private List<Book> Books { get; set; }
         public CatalogService()
         {
             Books = new List<Book>();
         }
-        public void PostBook(Book book)
+        public void PostBook(Book book, string isbn)
         {
-            Books.Add(book);
+            if (book[isbn].Contains(isbn))
+            {
+                Books.Add(book);
+            }
         }
         public Book GetBookByIsbn(string isbn)
         {

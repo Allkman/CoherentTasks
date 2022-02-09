@@ -5,7 +5,8 @@ using Task2.Entities.BookISBN;
 try
 {
     var date = new DateTime(1999, 10, 15).ToShortDateString();
-    var book1 = new Book("978-1-56619-909-4", "Good Book", date);
+    var book1 = new Book("Good Book", date);
+    var book1Isbn = book1["978-1-56619-909-4"];
     var author1 = new Author("Sam", "Burt");
     var author2 = new Author("Timothy", "Wilt");
 
@@ -20,7 +21,7 @@ try
     //book2.AddAuthors(author4);
 
     var catalog = new CatalogService();
-    catalog.PostBook(book1);
+    catalog.PostBook(book1, book1Isbn);
     //catalog.PostBook(book2);
 
 

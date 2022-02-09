@@ -9,25 +9,19 @@ namespace Task3.EmployeeVacation
     internal class Employee : Person
     {
         private int employeeId;
-
         public int EmployeeId
         {
             get
             {
-                int count = 0;
-                while (employeeId > 0)
+                var digitCount = (int)Math.Floor(Math.Log10(employeeId) + 1);
+                
+                if (digitCount == 6)
                 {
-                    employeeId = employeeId / 10;
-                    count++;
-                }
-                if (employeeId == 10)
-                {
-
                     return employeeId;
                 }
                 else
                 {
-                    throw new Exception("Employee ID must consist of 10 digits");
+                    throw new Exception("Employee ID must consist of 6 digits");
                 }
             }
             set
