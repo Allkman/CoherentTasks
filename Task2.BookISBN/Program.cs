@@ -48,7 +48,6 @@ catch (ArgumentOutOfRangeException)
 }
 catch (ArgumentException)
 {
-
     Console.WriteLine("Incorrect ISBN format.");
 }
 Console.ReadLine();
