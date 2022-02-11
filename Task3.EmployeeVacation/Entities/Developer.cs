@@ -8,7 +8,8 @@ namespace Task3.EmployeeVacation
 {
     internal class Developer : Employee
     {
-        public Developer(string firstName, string lastName, int employeeId):base(firstName, lastName, employeeId)
+        public Developer(string firstName, string lastName, int employeeId)
+            :base(firstName, lastName, employeeId)
         {
         }
     }

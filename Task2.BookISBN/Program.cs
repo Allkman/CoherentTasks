@@ -4,36 +4,54 @@ using Task2.Entities.BookISBN;
 
 try
 {
-    var date = new DateTime(1999, 10, 15).ToShortDateString();
-    var book1 = new Book("Good Book", date);
-    var book1Isbn = book1["978-1-56619-909-4"];
+    var date1 = new DateTime(1999, 10, 15).ToShortDateString();
+    var date2 = new DateTime(2008, 02, 10).ToShortDateString();
+    var book1 = new Book("978-1-56619-909-4", "Good Book", date1);
+    //string book1Isbn = "978-1-56619-909-4";
     var author1 = new Author("Sam", "Burt");
     var author2 = new Author("Timothy", "Wilt");
 
-    //var book2 = new Book("979-1-07819-209-3", "Good People", new DateTime(1983));
-    //var author3 = new Author("Anthony", "Soulman");
-    //var author4 = new Author("Rita", "Smith");
+    var book2 = new Book("978-1-56619-909-3", "Good People", date2);
+    var author3 = new Author("Anthony", "Soulman");
+    var author4 = new Author("Rita", "Smith");
+
+    Console.WriteLine(book1.ISBN.Equals(book1.ISBN)); //false
+
 
     book1.AddAuthors(author1);
     book1.AddAuthors(author2);
 
-    //book2.AddAuthors(author3);
-    //book2.AddAuthors(author4);
+    book2.AddAuthors(author3);
+    book2.AddAuthors(author4);
 
     var catalog = new CatalogService();
-    catalog.PostBook(book1, book1Isbn);
-    //catalog.PostBook(book2);
+    catalog.PostBook(book1);
+    catalog.PostBook(book2);
 
+    Console.WriteLine(catalog["9781566199094"]);
+    Console.WriteLine();
+    Console.WriteLine(catalog["9781566199093"]); 
+    Console.WriteLine(catalog["9781566199092"]); 
 
-
-    Console.WriteLine(catalog.GetBookByIsbn("9781566199094"));
+    //Console.WriteLine(catalog.GetBookByIsbn("9781566199094"));
     //Console.WriteLine(catalog.GetBookByIsbn("979-1-07819-209-3"));
 
 }
+catch (KeyNotFoundException)
+{
+    Console.WriteLine("The book with specified ISBN was not found.");
+}
+catch (InvalidOperationException)
+{
+    Console.WriteLine("ISBN key already exist.");
+}
 catch (NullReferenceException)
 {
-
-    Console.WriteLine("ISBN key does not exist");
+    Console.WriteLine("ISBN key does not exist.");
+}
+catch (ArgumentOutOfRangeException)
+{
+    Console.WriteLine("Catalog is empty.");
 }
 catch (ArgumentException)
 {

@@ -1,31 +1,46 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Task2.Entities.BookISBN;
+﻿using Task2.Entities.BookISBN;
 
 namespace Task2.BookISBN.Models
 {
     internal class CatalogService
     {
-        private List<Book> Books { get; set; }
-        public CatalogService()
+        private List<Book> _books;
+        private Book _book;
+        //an indexer for GET Book
+        public Book this[string isbn]
         {
-            Books = new List<Book>();
-        }
-        public void PostBook(Book book, string isbn)
-        {
-            if (book[isbn].Contains(isbn))
+            get
             {
-                Books.Add(book);
+                //repeat 1#
+                var books = _books.Where(book => book.ISBN == isbn).Select(book => book).ToList();
+
+                _book = books.FirstOrDefault();
+                if (_book != null)
+                {
+                    return _book;
+                }
+                throw new KeyNotFoundException();
             }
         }
-        public Book GetBookByIsbn(string isbn)
+        public CatalogService()
         {
-           return Books.Where(b => b[isbn] == isbn).FirstOrDefault();
+            _books = new List<Book>();
+            _book = new Book();
+        }
+        public void PostBook(Book book)
+        {
+            //repeat 2#
+            var books = _books.Where(b => b.ISBN == book.ISBN).Select(book => book).ToList();
+
+            _book = books.FirstOrDefault();
+            if (_book != null)
+            {
+                throw new InvalidOperationException();
+            }
+            else
+            {
+                _books.Add(book);
+            }
         }
     }
 }

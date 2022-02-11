@@ -13,38 +13,42 @@ namespace Task2.Entities.BookISBN
         private string _title;
         private string _publicationDate;
         private List<Author> Authors;
-        private string? _ISBN;
-        public string this[string isbn]
+        private static readonly Regex isbnWithHyphens = new Regex(@"^[0-9]*[-][0-9]*[-][0-9]*[-][0-9]*[-][0-9]*");
+        private static readonly Regex isbnDigitsOnly = new Regex(@"^[0-9]{13}$");
+        private string _isbn;
+        public string ISBN
         {
             get
             {
-                if (IsValideISBN(isbn))
-                {
-                    return _ISBN = isbn;
-                }
-                else
-                {
-                    throw new NullReferenceException();
-                }
+                return _isbn;
             }
-            set
+            set 
             {
-                if (IsValideISBN(isbn))
+                if (IsValideISBN(value))
+                    _isbn = value;
                 {
-                    _ISBN = isbn;
+                    if (isbnWithHyphens.IsMatch(_isbn))
+                    {
+                        string normalizedISBN = Regex.Replace(_isbn, @"[^0-9]", "");
+                        _isbn = normalizedISBN;
+                    }
                 }
             }
         }
-        public Book(string title, string date)
+        public Book(string isbn, string title, string date)
         {
+            ISBN = isbn;
             _title = title;
             Authors = new List<Author>();
             _publicationDate = date;
         }
+        public Book()
+        {
+
+        }
         private bool IsValideISBN(string isbn)
         {
-            var isbnWithHyphens = new Regex(@"^[0-9]*[-][0-9]*[-][0-9]*[-][0-9]*[-][0-9]*");
-            var isbnDigitsOnly = new Regex(@"^[0-9]{13}$");
+
             if (isbn == null)
             {
                 throw new NullReferenceException();

@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace Task3.EmployeeVacation
 {
-    internal class SalesRepresentative
+    internal class SalesRepresentative : Employee
     {
+        public SalesRepresentative(string firstName, string lastName, int employeeId) 
+            : base(firstName, lastName, employeeId)
+        {
+        }
     }
 }

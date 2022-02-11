@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 
 namespace Task3.EmployeeVacation
 {
-    internal class VacationService
+    internal class Vacation
     {
         public Employee Employee { get; set; }
         private DateTime StartDate { get; set; }
         private DateTime EndDate { get; set; }
+        public Vacation(Employee employee)
+        {
+
+        }
+        //TODO 
     }
 }
