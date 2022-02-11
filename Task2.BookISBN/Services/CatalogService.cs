@@ -11,7 +11,6 @@ namespace Task2.BookISBN.Models
         {
             get
             {
-                //repeat 1#
                 var books = _books.Where(book => book.ISBN == isbn).Select(book => book).ToList();
 
                 _book = books.FirstOrDefault();
@@ -29,7 +28,6 @@ namespace Task2.BookISBN.Models
         }
         public void PostBook(Book book)
         {
-            //repeat 2#
             var books = _books.Where(b => b.ISBN == book.ISBN).Select(book => book).ToList();
 
             _book = books.FirstOrDefault();

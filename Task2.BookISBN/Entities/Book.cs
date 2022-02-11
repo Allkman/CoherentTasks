@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using Task2.BookISBN.Entities;
 
 namespace Task2.Entities.BookISBN
@@ -42,10 +38,7 @@ namespace Task2.Entities.BookISBN
             Authors = new List<Author>();
             _publicationDate = date;
         }
-        public Book()
-        {
-
-        }
+        public Book() { }//for CatalogService ctor
         private bool IsValideISBN(string isbn)
         {
 
@@ -65,7 +58,6 @@ namespace Task2.Entities.BookISBN
             {
                 throw new ArgumentException();
             }
-                
         }
         public void AddAuthors(Author author)
         {
