@@ -33,6 +33,6 @@ namespace Task3.EmployeeVacation
         {
             EmployeeId = employeeId;
         }
-
+        public Employee() { }
     }
 }
