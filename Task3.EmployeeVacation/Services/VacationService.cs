@@ -10,26 +10,36 @@ namespace Task3.EmployeeVacation
 {
     internal class VacationService
     {
-        private Vacation _vacation = new Vacation();
+        private Vacation _vacation;
+        private Employee _employee;
         private List<Vacation> _allVacations;
-        //private DateTime StartDate;
-        //private DateTime EndDate;
 
         public VacationService()
         {
             _allVacations = new List<Vacation>();
         }
-        //TODO 
         public void Post(Vacation vacation)
         {
             _allVacations.Add(vacation);
         }
         public double AverageVacationLength()
         {
-            //var vacationDays = EndDate - StartDate;
-            //return _allVacations.Where(vacation => vacation.VacationDays == _vacation.VacationDays).Select(vacation => vacation.VacationDays).Average();
             return _allVacations
                 .Select(v => v.VacationDays).Average();
+        }
+        public List<Employee> AverageEmployeeVacationsLength()
+        {
+            //var employeeVacations = new List<Vacation>();
+            //foreach (var item in _allVacations)
+            //{
+            //    if (item.Employee == employee)
+            //    {
+            //        employeeVacations.Add(item);
+            //    }
+            //}
+            //return employeeVacations.
+            //    Select(v => v.VacationDays).Average();
+            return _allVacations.Where(e => e.Employee == _employee).ToList();
         }
 
     }

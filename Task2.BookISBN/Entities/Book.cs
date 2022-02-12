@@ -7,23 +7,28 @@ namespace Task2.Entities.BookISBN
     internal class Book
     {
         private string _title;
-        private string _publicationDate;
-        private List<Author> Authors;
-        private static readonly Regex isbnWithHyphens = new Regex(@"^[0-9]*[-][0-9]*[-][0-9]*[-][0-9]*[-][0-9]*");
-        private static readonly Regex isbnDigitsOnly = new Regex(@"^[0-9]{13}$");
+        private DateTime? _publicationDate;
+        private HashSet<Author> _authors;
+        private static readonly Regex _isbnWithHyphens = new Regex(@"^[0-9]*[-][0-9]*[-][0-9]*[-][0-9]*[-][0-9]*");
+        private static readonly Regex _isbnDigitsOnly = new Regex(@"^[0-9]{13}$");
         private string _isbn;
         public string ISBN
         {
             get
             {
+                if (!IsValidISBN(_isbn))
+                {
+                    _isbn = null;
+                    throw new ArgumentException();
+                }
                 return _isbn;
             }
             set 
             {
-                if (IsValideISBN(value))
+                if (IsValidISBN(value))
                     _isbn = value;
                 {
-                    if (isbnWithHyphens.IsMatch(_isbn))
+                    if (_isbnWithHyphens.IsMatch(_isbn))
                     {
                         string normalizedISBN = Regex.Replace(_isbn, @"[^0-9]", "");
                         _isbn = normalizedISBN;
@@ -31,26 +36,32 @@ namespace Task2.Entities.BookISBN
                 }
             }
         }
-        public Book(string isbn, string title, string date)
+        public Book(string isbn, string title, DateTime date)
         {
             ISBN = isbn;
-            _title = title;
-            Authors = new List<Author>();
+            if (!string.IsNullOrEmpty(title))
+            {
+                _title = title;
+            }
+            else
+            {
+                throw new ArgumentNullException();
+            }
+            _authors = new HashSet<Author>();
             _publicationDate = date;
         }
         public Book() { }//for CatalogService ctor
-        private bool IsValideISBN(string isbn)
+        private bool IsValidISBN(string isbn)
         {
-
             if (isbn == null)
             {
                 throw new NullReferenceException();
             }
-            else if (isbnWithHyphens.Match(isbn).Success)
+            else if (_isbnWithHyphens.Match(isbn).Success)
             {
                 return true;
             }
-            else if (isbnDigitsOnly.Match(isbn).Success)
+            else if (_isbnDigitsOnly.Match(isbn).Success)
             {
                 return true;
             }
@@ -61,18 +72,17 @@ namespace Task2.Entities.BookISBN
         }
         public void AddAuthors(Author author)
         {
-            Authors.Add(author);
+            _authors.Add(author);
         }
         public override string ToString()
         {
             var sb = new StringBuilder();
-            var author = new Author();
             sb.AppendLine(_title);
             sb.AppendLine(_publicationDate.ToString());
             sb.AppendLine("Author (-s):");
-            for (int i = 0; i < Authors.Count; i++)
+            foreach (var author in _authors)
             {
-                sb.AppendLine(Authors[i].ToString());
+                sb.Append($"{author} \n");
             }
             return sb.ToString();
         }

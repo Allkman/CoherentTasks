@@ -15,7 +15,6 @@ namespace Task3.EmployeeVacation
         {
             FirstName = firstName;
             LastName = lastName;
-
         }
         public Person() { }
         public Guid? Id { get; set; }
