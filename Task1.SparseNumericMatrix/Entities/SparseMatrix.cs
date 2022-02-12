@@ -17,7 +17,6 @@ namespace Task1.SparseNumericMatrix.Entities
         }
         public int RowCount { get; private set; }
         public int ColumnCount { get; private set; }
-        private int _size => RowCount * ColumnCount;
         private Dictionary<Key, int> _cells = new Dictionary<Key, int>();
         public int this[int i, int j]
         {
@@ -30,7 +29,10 @@ namespace Task1.SparseNumericMatrix.Entities
             set
             {
                 var key = new Key(i, j);
-                _cells[key] = value;
+                if (value != 0)
+                {
+                    _cells[key] = value;
+                }
             }
         }
         public SparseMatrix(int row, int column)
@@ -58,9 +60,9 @@ namespace Task1.SparseNumericMatrix.Entities
         }
         public IEnumerator<int> GetEnumerator()
         {
-            for (int i = 0; i < _size; i++)
+            for (int i = 0; i < RowCount; i++)
             {
-                for (int j = 0; j < _size; j++)
+                for (int j = 0; j < ColumnCount; j++)
                 {
                     yield return this[i, j];
                 }
