@@ -8,9 +8,6 @@ namespace Task3.EmployeeVacation
 {
     internal class Person
     {
-        private string firstName;
-        private string lastName;
-
         public Person(string firstName, string lastName)
         {
             FirstName = firstName;
@@ -20,10 +17,5 @@ namespace Task3.EmployeeVacation
         public Guid? Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}";
-        }
     }
 }
