@@ -8,7 +8,8 @@ var alanVacation1st = new Vacation(new Developer("Alan", "Smith", 240012), new D
 var alanVacation2nd = new Vacation(new Developer("Alan", "Smith", 240012), new DateTime(2021, 07, 14), new DateTime(2021, 07, 16));
 var kellyVacation1st = new Vacation(new Developer("Kelly", "Clark", 240101), new DateTime(2021, 07, 01), new DateTime(2021, 07, 22));
 var kellyVacation2nd = new Vacation(new Developer("Kelly", "Clark", 240101), new DateTime(2021, 08, 25), new DateTime(2021, 09, 05));
-
+var year2021 = new DateTime(2021, 01, 01); 
+Console.WriteLine(year2021);
 //Console.WriteLine(tomVacation1st.VacationDays); 
 //Console.WriteLine(tomVacation2nd.VacationDays); 
 //Console.WriteLine(alanVacation1st.VacationDays); 
@@ -34,6 +35,10 @@ foreach (var item in months)
 {
     Console.WriteLine(item);
 }
-//vacationService.NoVacationDateIntervals();
+var dates = vacationService.NonVacationDates(year2021);
+foreach (var item in dates)
+{
+    Console.WriteLine(item);
+}
 //vacationService.DoIntersect(allVacations);
 

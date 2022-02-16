@@ -19,7 +19,7 @@ namespace Task3.EmployeeVacation
             return _allVacations
                 .Select(v => v.VacationDays).Average();
         }
-        public List<(string, double)> AverageEmployeeVacationsLength()
+        public IEnumerable<(string, double)> AverageEmployeeVacationsLength()
         {
             return _allVacations
                 .GroupBy(e => (e.Employee.FirstName, e.Employee.LastName), vd => vd.VacationDays)
@@ -32,10 +32,19 @@ namespace Task3.EmployeeVacation
                 yield return (
                     month, //to return all months
                     _allVacations
-                    // to return results and 0 if no record is at specific month
+                    // to return result for each month and 0 if no record is at specific month
                     .Count(s => s.StartDate.Month <= month && s.EndDate.Month >= month) 
                     );
             }
+        }
+        public IEnumerable<DateTime> NonVacationDates(DateTime year)
+        {   
+            var dates = new List<DateTime>();
+            foreach (var item in _allVacations)
+            {
+                
+            }
+            return dates;
         }
     }
 }
