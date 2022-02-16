@@ -10,8 +10,18 @@ namespace Task1.Logger
     [TrackingEntity]
     internal class Person
     {
-        [TrackingProperty]
+        public Person(string name, int age)
+        {
+            Name = name;
+            Age = age;
+        }
+        public Person()
+        {
+
+        }
+        [TrackingProperty(PropertyName = "Name")]
         public string Name { get; set; }
         public int Age { get; set; }
+
     }
 }

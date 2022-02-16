@@ -1,2 +1,5 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
+﻿using Task1.Logger;
+
+var person = new Person("Tom", 25);
+var logger = new Logger(person);
+Console.WriteLine(logger);
