@@ -15,9 +15,14 @@ namespace Task1.Logger
             Person = person;
         }
 
-        public string Track(Person person)
+        public string Track(object item)
         {
-            string json = JsonSerializer.Serialize<Person>(person);
+            var custom = item.GetType().GetCustomAttributes(true);
+            if (custom.Contains())
+            {
+
+            }
+            string json = JsonSerializer.Serialize<Person>(item);
             Person restoredPerson = JsonSerializer.Deserialize<Person>(json);
             Console.WriteLine(restoredPerson.Name);
             return restoredPerson.Name;

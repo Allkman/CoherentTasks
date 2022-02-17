@@ -19,7 +19,7 @@ namespace Task1.Logger
         {
 
         }
-        [TrackingProperty(PropertyName = "Name")]
+        [TrackingProperty]
         public string Name { get; set; }
         public int Age { get; set; }
 
