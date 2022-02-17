@@ -41,7 +41,8 @@ namespace Task3.EmployeeVacation
         {
             var year2021 = GetYearRange();
             var dates = new List<DateTime>();
-
+            var dtates2 = _allVacations
+                .
             foreach (var item in _allVacations)
             {
                 for (var vacationDate = item.StartDate; vacationDate <= item.EndDate; vacationDate = vacationDate.AddDays(1))

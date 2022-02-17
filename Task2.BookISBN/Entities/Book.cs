@@ -36,7 +36,7 @@ namespace Task2.Entities.BookISBN
                 }
             }
         }
-        public Book(string isbn, string title, DateTime date)
+        public Book(string isbn, string title, DateTime date, HashSet<Author> authors)
         {
 
                 ISBN = isbn;
@@ -48,7 +48,7 @@ namespace Task2.Entities.BookISBN
             {
                 throw new ArgumentNullException();
             }
-            _authors = new HashSet<Author>();
+            _authors = authors;
             _publicationDate = date;
         }
         private bool IsValidISBN(string isbn)
@@ -69,10 +69,6 @@ namespace Task2.Entities.BookISBN
             {
                 throw new ArgumentException();
             }
-        }
-        public void AddAuthors(Author author)
-        {
-            _authors.Add(author);
         }
         public override string ToString()
         {
