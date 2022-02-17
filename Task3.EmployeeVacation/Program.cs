@@ -32,8 +32,8 @@ var counter = 0;
 foreach (var item in dates)
 {
     Console.WriteLine(item);
-    counter++;
-    Console.WriteLine(counter);
+    //counter++;
+    //Console.WriteLine(counter);
 }
 //vacationService.DoIntersect(allVacations);
 

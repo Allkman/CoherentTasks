@@ -33,41 +33,31 @@ namespace Task3.EmployeeVacation
                     month, //to return all months
                     _allVacations
                     // to return result for each month and 0 if no record is at specific month
-                    .Count(s => s.StartDate.Month <= month && s.EndDate.Month >= month) 
+                    .Count(s => s.StartDate.Month <= month && s.EndDate.Month >= month)
                     );
             }
         }
         public IEnumerable<DateTime> NonVacationDates()
         {
-            var year2021 = GetYearRange();
-            var dates = new List<DateTime>();
-            var dtates2 = _allVacations
-                .
-            foreach (var item in _allVacations)
-            {
-                for (var vacationDate = item.StartDate; vacationDate <= item.EndDate; vacationDate = vacationDate.AddDays(1))
-                {
-                    dates.Add(vacationDate);
-                }
-            }
+            var start2021 = new DateTime(2021, 01, 01);
+            var end2021 = new DateTime(2021, 12, 31);
+            var year2021 = Enumerable.Range(0, end2021
+                                                   .Subtract(start2021).Days + 1)
+                                                   .Select(d => start2021
+                                                   .AddDays(d)
+                                                   );
 
-            var workDays = year2021.Except(dates);
+            var allVacationDatesFlattened = _allVacations
+                                                   .SelectMany(x => Enumerable.Range(0, x.EndDate.Subtract(x.StartDate).Days + 1)
+                                                   .Select(d => x.StartDate.AddDays(d)))
+                                                   .ToList();
 
-
-            Console.WriteLine(workDays.Count()); // 296
-
-            return workDays;
-
+            var allNonVacationDays = year2021.Except(allVacationDatesFlattened);
+            return allNonVacationDays;
         }
-        private IEnumerable<DateTime> GetYearRange()
-        {
-            var dateRange = new List<DateTime>();
-            for (var date = new DateTime(2021, 01, 01); date <= new DateTime(2021, 12, 31); date = date.AddDays(1))
-            {
-                dateRange.Add(date);
-            }
-            return dateRange;
-        }
-        
+        //public bool DoDatesIntersect()
+        //{
+        //    return _
+        //}
     }
 }
