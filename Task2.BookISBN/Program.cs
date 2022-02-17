@@ -4,25 +4,37 @@ using Task2.Entities.BookISBN;
 
 try
 {
-    var book1 = new Book("978-1-56619-909-4", "Good Book", new DateTime(1999, 10, 15));
+    var catalog = new CatalogService();
+    var bookValid = new Book("978-1-56619-909-4", "First Book", new DateTime(1999, 10, 15));
     var author1 = new Author("Sam", "Burt");
     var author2 = new Author("Timothy", "Wilt");
 
-    var book2 = new Book("978-1-56619-909-3", "Good People", new DateTime(2008, 02, 10));
+    var book2 = new Book("978-1-56619-909-3", "Second Book", new DateTime(2008, 02, 10));
     var author3 = new Author("Anthony", "Soulman");
     var author4 = new Author("Rita", "Smith");
 
-    book1.AddAuthors(author1);
-    book1.AddAuthors(author2);
+    string isbnInvalid = "123";
+    var bookInvalid = new Book(isbnInvalid, "BAD Book", new DateTime(2011, 07, 19));
+    var author5 = new Author("Tim", "Roth");
+    var author6 = new Author("Sarah", "Wright");
+
+    bookValid.AddAuthors(author1);
+    bookValid.AddAuthors(author2);
 
     book2.AddAuthors(author3);
     book2.AddAuthors(author4);
 
-    var catalog = new CatalogService();
+    //bookInvalid.AddAuthors(author5);
+    //bookInvalid.AddAuthors(author6);
 
-    catalog[null] = book1;
-    catalog[null] = book2;
-    //catalog[null] = null;
+
+    catalog["978-1-56619-909-4"] = bookValid;
+    catalog["978-1-56619-909-3"] = book2;
+
+
+    var bookReceived = catalog["978-1-56619-909-4"];
+    //var bookReceived = bookValid;
+    Console.WriteLine(bookValid == bookReceived);
 
     Console.WriteLine(catalog["9781566199094"]);
     Console.WriteLine();

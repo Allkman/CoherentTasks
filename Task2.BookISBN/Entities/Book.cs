@@ -26,8 +26,8 @@ namespace Task2.Entities.BookISBN
             set 
             {
                 if (IsValidISBN(value))
-                    _isbn = value;
                 {
+                    _isbn = value;
                     if (_isbnWithHyphens.IsMatch(_isbn))
                     {
                         string normalizedISBN = Regex.Replace(_isbn, @"[^0-9]", "");
@@ -38,7 +38,8 @@ namespace Task2.Entities.BookISBN
         }
         public Book(string isbn, string title, DateTime date)
         {
-            ISBN = isbn;
+
+                ISBN = isbn;
             if (!string.IsNullOrEmpty(title))
             {
                 _title = title;
@@ -50,7 +51,6 @@ namespace Task2.Entities.BookISBN
             _authors = new HashSet<Author>();
             _publicationDate = date;
         }
-        public Book() { }//for CatalogService ctor
         private bool IsValidISBN(string isbn)
         {
             if (isbn == null)
@@ -86,5 +86,6 @@ namespace Task2.Entities.BookISBN
             }
             return sb.ToString();
         }
+
     }
 }

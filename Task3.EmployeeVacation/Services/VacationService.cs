@@ -1,11 +1,11 @@
-﻿using Task3.EmployeeVacation.Entities;
+﻿using System.Globalization;
+using Task3.EmployeeVacation.Entities;
 
 namespace Task3.EmployeeVacation
 {
     internal class VacationService
     {
         private List<Vacation> _allVacations;
-
         public VacationService()
         {
             _allVacations = new List<Vacation>();
@@ -37,14 +37,36 @@ namespace Task3.EmployeeVacation
                     );
             }
         }
-        public IEnumerable<DateTime> NonVacationDates(DateTime year)
-        {   
+        public IEnumerable<DateTime> NonVacationDates()
+        {
+            var year2021 = GetYearRange();
             var dates = new List<DateTime>();
+
             foreach (var item in _allVacations)
             {
-                
+                for (var vacationDate = item.StartDate; vacationDate <= item.EndDate; vacationDate = vacationDate.AddDays(1))
+                {
+                    dates.Add(vacationDate);
+                }
             }
-            return dates;
+
+            var workDays = year2021.Except(dates);
+
+
+            Console.WriteLine(workDays.Count()); // 296
+
+            return workDays;
+
         }
+        private IEnumerable<DateTime> GetYearRange()
+        {
+            var dateRange = new List<DateTime>();
+            for (var date = new DateTime(2021, 01, 01); date <= new DateTime(2021, 12, 31); date = date.AddDays(1))
+            {
+                dateRange.Add(date);
+            }
+            return dateRange;
+        }
+        
     }
 }

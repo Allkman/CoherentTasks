@@ -13,6 +13,7 @@ namespace Task2.BookISBN.Models
             {
                 var books = _books.Where(book => book.ISBN == isbn).Select(book => book).ToList();
                 _book = books.FirstOrDefault();
+
                 if (_book != null)
                 {
                     return _book;
@@ -21,6 +22,7 @@ namespace Task2.BookISBN.Models
             }
             set
             {
+                isbn = value.ISBN;
                 if (value != null)
                 {
                     _books.Add(value);
@@ -34,7 +36,6 @@ namespace Task2.BookISBN.Models
         public CatalogService()
         {
             _books = new List<Book>();
-            _book = new Book();
         }
     }
 }
