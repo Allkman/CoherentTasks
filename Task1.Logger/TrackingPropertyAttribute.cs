@@ -1,9 +1,5 @@
 ﻿
 namespace Task1.Logger
 {
-    internal class TrackingPropertyAttribute : Attribute
-    {
-
-
-    }
+    public class TrackingPropertyAttribute : Attribute { }
 }

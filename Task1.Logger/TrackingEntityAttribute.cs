@@ -1,7 +1,4 @@
-﻿
-namespace Task1.Logger
+﻿namespace Task1.Logger
 {
-    internal class TrackingEntityAttribute : Attribute
-    {
-    }
+    public class TrackingEntityAttribute : Attribute { }
 }

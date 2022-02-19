@@ -1,31 +1,49 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace Task1.Logger
 {
-    internal class Logger
+    public class Logger
     {
-        Person Person { get; set; } = new Person();
-        public Logger(Person person)
+        private string _jsonFile;
+        private static readonly Dictionary<string, string> log = new Dictionary<string, string>();
+        public Logger(string jsonFile)
         {
-            Person = person;
+            _jsonFile = $"{jsonFile}.json";
         }
 
-        public string Track(object item)
+        //https://stackoverflow.com/questions/6637679/reflection-get-attribute-name-and-value-on-property
+        public void Track(object obj)
         {
-            var custom = item.GetType().GetCustomAttributes(true);
-            if (custom.Contains())
+            var classAttributes = obj.GetType().GetCustomAttributes(true);
+            foreach (var classAttibute in classAttributes)
             {
-
+                var trackingEntityAttribute = classAttibute as TrackingEntityAttribute;
+                if (trackingEntityAttribute != null)  /*classAttibute.GetType().Name == "TrackingEntityAttribute"*/
+                {
+                    var properties = obj.GetType().GetProperties();
+                    foreach (var property in properties)
+                    {
+                        var propertyAttributes = property.GetCustomAttributes(true);
+                        foreach (var propertyAttribute in propertyAttributes)
+                        {
+                            var trackingPropertyAttribute = propertyAttribute as TrackingPropertyAttribute;
+                            if (trackingPropertyAttribute != null)
+                            {
+                                string propertyName = property.Name;
+                                string value = property.GetValue(obj).ToString();
+                                log.Add(propertyName, value);
+                                File.WriteAllText($"C:{Path.DirectorySeparatorChar}Testing{Path.DirectorySeparatorChar}{_jsonFile}", JsonSerializer.Serialize(log));
+                            }
+                        }
+                    }
+                }
             }
-            string json = JsonSerializer.Serialize<Person>(item);
-            Person restoredPerson = JsonSerializer.Deserialize<Person>(json);
-            Console.WriteLine(restoredPerson.Name);
-            return restoredPerson.Name;
         }
     }
 }
