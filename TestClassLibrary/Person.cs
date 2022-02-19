@@ -1,9 +1,9 @@
-﻿using System;
+﻿using LoggerBL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Task1.Logger;
 
 namespace TestClassLibrary
 {

@@ -1,4 +1,4 @@
-﻿using Task1.Logger;
+﻿using LoggerBL;
 using TestClassLibrary;
 
 try
@@ -6,7 +6,7 @@ try
     var person = new Person("Tom", 25, "Male");
     var logger = new Logger("test");
 
-logger.Track(person);
+    logger.Track(person);
 }
 catch (ArgumentException)
 {
@@ -14,5 +14,5 @@ catch (ArgumentException)
 }
 catch (NullReferenceException)
 {
-    throw new NullReferenceException("Cannot be empty");
+    throw new NullReferenceException("Cannot be empty or null");
 }
