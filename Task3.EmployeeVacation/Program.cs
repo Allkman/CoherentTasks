@@ -3,8 +3,8 @@ using Task3.EmployeeVacation.Entities;
 
 var tomVacation1st = new Vacation(new Developer("Tom", "Anderson", 240007), new DateTime(2021, 03, 12), new DateTime(2021, 03, 26));//overlap
 var tomVacation2nd = new Vacation(new Developer("Tom", "Anderson", 240007), new DateTime(2021, 03, 23), new DateTime(2021, 03, 31));//overlap
-var alanVacation1st = new Vacation(new Developer("Alan", "Smith", 240012), new DateTime(2021, 03, 24), new DateTime(2021, 04, 07));
-var alanVacation2nd = new Vacation(new Developer("Alan", "Smith", 240012), new DateTime(2021, 07, 14), new DateTime(2021, 07, 16));
+var alanVacation1st = new Vacation(new SalesRepresentative("Alan", "Smith", 240012), new DateTime(2021, 03, 24), new DateTime(2021, 04, 07));
+var alanVacation2nd = new Vacation(new SalesRepresentative("Alan", "Smith", 240012), new DateTime(2021, 07, 14), new DateTime(2021, 07, 16));
 var kellyVacation1st = new Vacation(new Developer("Kelly", "Clark", 240101), new DateTime(2021, 07, 01), new DateTime(2021, 07, 22));
 var kellyVacation2nd = new Vacation(new Developer("Kelly", "Clark", 240101), new DateTime(2021, 08, 25), new DateTime(2021, 09, 05));
 

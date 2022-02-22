@@ -41,6 +41,7 @@ namespace Task3.EmployeeVacation
         {
             var start2021 = new DateTime(2021, 01, 01);
             var end2021 = new DateTime(2021, 12, 31);
+            //putting all dates of 2021 into a range
             var year2021 = Enumerable.Range(0, end2021
                                                    .Subtract(start2021).Days + 1)
                                                    .Select(d => start2021
@@ -57,12 +58,17 @@ namespace Task3.EmployeeVacation
         }
         public bool DoEmployeeDatesOverlap()
         {
-            return _allVacations
-                   .Any(vacation => _allVacations
-                   .Where(emplyeeVacation => emplyeeVacation != vacation)
-                   .Any(emplyeeVacation => emplyeeVacation.Employee.Equals(vacation.Employee) && 
-                        emplyeeVacation.EndDate >= vacation.StartDate && 
-                        emplyeeVacation.StartDate <= vacation.EndDate));
+            var a = 
+            _allVacations
+                   .Any(primaryVacation => _allVacations
+                   //comaparing two separate vacations
+                   .Where(secondaryVacation => secondaryVacation != primaryVacation)
+                   //checking if I am only comparing two vacations of the same person (fName, lName == fname, lName)
+                   .Any(secondaryVacation => secondaryVacation.Employee.Equals(primaryVacation.Employee) &&
+                   //comparing between dates if they overlap
+                        secondaryVacation.EndDate >= primaryVacation.StartDate && 
+                        secondaryVacation.StartDate <= primaryVacation.EndDate));
+            return a;
         }
     }
 }

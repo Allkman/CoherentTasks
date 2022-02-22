@@ -35,10 +35,6 @@ namespace Task3.EmployeeVacation
             EmployeeId = employeeId;
         }
         public Employee() { }
-        public override string ToString()
-        {
-            return $"{FirstName} {LastName}";
-        }
         //used in VacationService -> DoEmployeeDatesOverlap()
         public override bool Equals(object? obj)
         {

@@ -15,7 +15,5 @@
             StartDate = startDate;
             EndDate = endDate;
         }
-        public Vacation() { }
-       
     }
 }
