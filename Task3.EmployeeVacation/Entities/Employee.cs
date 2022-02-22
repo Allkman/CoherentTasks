@@ -35,5 +35,17 @@ namespace Task3.EmployeeVacation
             EmployeeId = employeeId;
         }
         public Employee() { }
+        public override string ToString()
+        {
+            return $"{FirstName} {LastName}";
+        }
+        //used in VacationService -> DoEmployeeDatesOverlap()
+        public override bool Equals(object? obj)
+        {
+            if (obj == null) return false;
+            if (this.GetType() != obj.GetType()) return false;
+            Employee emp = (Employee)obj;
+            return (this.FirstName, this.LastName) == (emp.FirstName, emp.LastName);
+        }
     }
 }

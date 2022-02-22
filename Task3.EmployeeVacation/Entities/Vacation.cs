@@ -16,5 +16,6 @@
             EndDate = endDate;
         }
         public Vacation() { }
+       
     }
 }

@@ -55,9 +55,14 @@ namespace Task3.EmployeeVacation
             var allNonVacationDays = year2021.Except(allVacationDatesFlattened);
             return allNonVacationDays;
         }
-        //public bool DoDatesIntersect()
-        //{
-        //    return _
-        //}
+        public bool DoEmployeeDatesOverlap()
+        {
+            return _allVacations
+                   .Any(vacation => _allVacations
+                   .Where(emplyeeVacation => emplyeeVacation != vacation)
+                   .Any(emplyeeVacation => emplyeeVacation.Employee.Equals(vacation.Employee) && 
+                        emplyeeVacation.EndDate >= vacation.StartDate && 
+                        emplyeeVacation.StartDate <= vacation.EndDate));
+        }
     }
 }
