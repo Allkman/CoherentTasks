@@ -63,7 +63,7 @@ namespace Task3.EmployeeVacation
                    .Any(primaryVacation => _allVacations
                    //comaparing two separate vacations
                    .Where(secondaryVacation => secondaryVacation != primaryVacation)
-                   //checking if I am only comparing two vacations of the same person (fName, lName == fname, lName)
+                   //checking if I am only comparing two vacations of the same person (fName, lName == fName, lName)
                    .Any(secondaryVacation => secondaryVacation.Employee.Equals(primaryVacation.Employee) &&
                    //comparing between dates if they overlap
                         secondaryVacation.EndDate >= primaryVacation.StartDate && 
