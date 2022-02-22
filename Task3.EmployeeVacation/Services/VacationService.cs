@@ -58,8 +58,7 @@ namespace Task3.EmployeeVacation
         }
         public bool DoEmployeeDatesOverlap()
         {
-            var a = 
-            _allVacations
+            return _allVacations
                    .Any(primaryVacation => _allVacations
                    //comaparing two separate vacations
                    .Where(secondaryVacation => secondaryVacation != primaryVacation)
@@ -68,7 +67,6 @@ namespace Task3.EmployeeVacation
                    //comparing between dates if they overlap
                         secondaryVacation.EndDate >= primaryVacation.StartDate && 
                         secondaryVacation.StartDate <= primaryVacation.EndDate));
-            return a;
         }
     }
 }
