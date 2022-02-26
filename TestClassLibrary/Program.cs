@@ -3,7 +3,7 @@ using TestClassLibrary;
 
 try
 {
-    var person = new Person("Tom", 25, "Male");
+    var person = new Person("Tom", 25, "Male", "Highroad", 12, "London");
     var logger = new Logger("test");
 
     logger.Track(person);
