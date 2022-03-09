@@ -6,6 +6,7 @@ namespace Matrix.ConsoleApp
     {
         static void Main(string[] args)
         {
+            //updates
             var matrixArray1 = new int[] { 3, 3, 2};
             var matrixArray2 = new int[] { 0, 0, 5,1 };
 
