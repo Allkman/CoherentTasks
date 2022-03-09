@@ -5,6 +5,12 @@ namespace Matrix.ConsoleApp
 {
     internal static class MatrixExtension
     {
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="first"></param>
+        /// <param name="second"></param>
+        /// <returns></returns>
         public static DiagonalMatrix GetNewMatrixFromAddingTwoMatrices(this DiagonalMatrix first, DiagonalMatrix second)
         {
             var newArrayLength = 0;

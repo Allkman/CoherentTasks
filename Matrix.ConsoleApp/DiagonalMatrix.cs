@@ -24,12 +24,6 @@ using System.Text;
 /// 7.  Create a diagonal matrix extension method that adds two diagonal matrices. The result of the method is a new diagonal matrix.
 /// If the dimensions of the matrix do not match, the smaller matrix is padded with zeros.
 /// </summary>
-/// <summary>
-/// example of 3x3 diagonal matrix
-/// [(i==j), (i!=j), (i!=j)] (X, 0, 0) is to index this 'X'
-/// [(i!=j), (i==j), (i!=j)] (0, X, 0)
-/// [(i!=j), (i!=j), (i==j)] (0, 0, X)
-/// </summary>
 namespace Matrix.ConsoleApp
 {
     internal class DiagonalMatrix
